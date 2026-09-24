@@ -1,0 +1,11 @@
+# Local Python environment
+.venv/
+
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Local notes and scratch output
+notes.txt
+output.txt
+output1.txt

@@ -1,0 +1,90 @@
+# ASR ground-truth manifest
+# Format: audio path<TAB>transcript identifier or identifier prefix
+# Add one mapping row here for every new audio file, then add its transcript below.
+# The transcript rows keep their identifier as the first field followed by a space.
+gmvani/01-00159-02.mp3	01-00159-02
+lahaja/audio.wav	lahaja
+w5Jyq3XMbb3WwiKQ.wav	103085_w5Jyq3XMbb3WwiKQ_
+
+01-00159-02 सुनने वाले उन सरकार या पार्टी का समर्थक समर्थक होते हैं हैं आम नागरिक नहीं इसीलिए उनको लाभ नहीं मिल पता है धन्यवाद
+
+
+lahaja: किम ने उन्नीस सौ तिरानवे में फ़िल्म उद्योग से संन्यास ले लिया उनकी आखिरी फ़िल्में प्रतिकार हनीमून बलवान मुस्कुराहट और बुलंद में अतिथि भूमिकाएँ थीं
+
+103085_w5Jyq3XMbb3WwiKQ_0000 लिबर ऑफिस impress में एक प्रस्तुति document बनाना और बुनियादी formatting के इस spoken tutorial में आपका स्वागत है
+103085_w5Jyq3XMbb3WwiKQ_0001 इस tutorial में हम impress window के भागों के बारे में सीखेंगे और कैसे स्लाइड इन्सर्ट करें और कॉपी करें फॉन्ट तथा फॉन्ट को फॉर्मेट करना सीखेंगे
+103085_w5Jyq3XMbb3WwiKQ_0002 यहाँ हम अपने ऑपरेटिंग सिस्टम के रूप में gnu/linux और लिबरऑफिस वर्जन 334 का उपयोग कर रहे हैं
+103085_w5Jyq3XMbb3WwiKQ_0003 चलिए अपनी प्रस्तुति प्रेजैटेशन sample impress open करते हैं जिसे पिछले tutorial में बनाया था
+103085_w5Jyq3XMbb3WwiKQ_0004 चलिए देखते हैं कि screen पर क्या क्या है
+103085_w5Jyq3XMbb3WwiKQ_0005 मध्य में हम खाली जगह देखते है जोकि workspace है जहाँ हम काम करेंगे
+103085_w5Jyq3XMbb3WwiKQ_0006 जैसे कि आप देख सकते हैं workspace में 5 tabs हैं जिन्हें view buttons कहते हैं
+103085_w5Jyq3XMbb3WwiKQ_0007 फिलहाल normal टैब चुनित हैं
+103085_w5Jyq3XMbb3WwiKQ_0008 यह मुख्य view है अलगअलग slides बनाने के लिए
+103085_w5Jyq3XMbb3WwiKQ_0009 outline view प्रत्येक slide के outline format में विषय शीर्षक bulleted और क्रमांकित सूचियाँ बताता है
+103085_w5Jyq3XMbb3WwiKQ_0010 notes view प्रत्येक slide में notes जोड़ने की सुविधा देता है जोकि प्रस्तुतिकरण के वक्त नज़र नहीं the
+103085_w5Jyq3XMbb3WwiKQ_0011 handout view slides को हैन्डाउट के रूप में print करने की सुविधा देता है
+103085_w5Jyq3XMbb3WwiKQ_0012 यहाँ हमें एक पेज पर कितने slides print करने हैं इसका चुनाव कर सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0013 slide sorter view slides की थम्बनेल बताता है
+103085_w5Jyq3XMbb3WwiKQ_0014 अब फिर से normal view button पर click करते हैं
+103085_w5Jyq3XMbb3WwiKQ_0015 screen की बाईं ओर आप slides pane देखते हैं यह प्रस्तुति में slides के थम्बनेल सम्मिलित करता है
+103085_w5Jyq3XMbb3WwiKQ_0016 दाएँ तरफ tasks pane हैं जिसमें अनुभाग है
+103085_w5Jyq3XMbb3WwiKQ_0017 लेआउट्स section में पहले से ही कुछ सैम्पल लेआउट्स मौजूद हैं
+103085_w5Jyq3XMbb3WwiKQ_0018 हम उनका उपयोग ऐसे ही कर सकते हैं या आवश्यकता अनुसार कुछ बदलाव करके उपयोग कर सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0019 जैसे जैसे हम इन tutorial में आगे बढ़ेंगे इन sections को विस्तार में देखेंगे
+103085_w5Jyq3XMbb3WwiKQ_0020 चलिए अब सीखते हैं कि कैसे slide को insert करें यानि जोड़ें slides pane में दूसरी slide पर क्लिक करके उसे चुनें
+103085_w5Jyq3XMbb3WwiKQ_0021 अब insert और slide पर click करें
+103085_w5Jyq3XMbb3WwiKQ_0022 हम देखते हैं कि दूसरी slide के बाद एक नई खाली slide जुड़ गई है
+103085_w5Jyq3XMbb3WwiKQ_0023 slide पर शीर्षक लिखने के लिए टेक्स्टबार में click to add title पर click करें
+103085_w5Jyq3XMbb3WwiKQ_0024 अब short term strategy type करें और text box के बाहर click करें
+103085_w5Jyq3XMbb3WwiKQ_0025 अतः शीर्षक इस तरह से जोड़ सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0026 यहाँ दो तरीके है जिससे हम slide की प्रतिलिपि डुप्लिकेट बना सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0027 पहले तरीके को देखते हैं insert पर click करें और फिर duplicate slide पर click करें
+103085_w5Jyq3XMbb3WwiKQ_0028 हम देख सकते हैं कि एक नई duplicate slide हमारी पहली बनाई गई slide के बाद जोड़ी गई है
+103085_w5Jyq3XMbb3WwiKQ_0029 या तो workspace pane में जाकर slide sorter क्लिक करके slide sorter view पर जाएँ
+103085_w5Jyq3XMbb3WwiKQ_0030 अब सातवीं स्लाइड को कॉपी करें स्लाइड पर राइट क्लिक करें और कांटेक्स्ट मेन्यू से copy चुनें
+103085_w5Jyq3XMbb3WwiKQ_0031 आखरी स्लाइड पर राइट क्लिक करें paste पर क्लिक करें
+103085_w5Jyq3XMbb3WwiKQ_0032 after चुनें और ok click करें
+103085_w5Jyq3XMbb3WwiKQ_0033 प्रेसेंटेशन के अंत में आपने स्लाइड की एक कॉपी बना ली है
+103085_w5Jyq3XMbb3WwiKQ_0034 चलिए अब फोंट्स और फोंट्स को फॉर्मेट करने के कुछ तरीके देखते हैं
+103085_w5Jyq3XMbb3WwiKQ_0035 long term goal नामक slide पर double क्लिक करके उसे चुनते हैं
+103085_w5Jyq3XMbb3WwiKQ_0036 body टेक्स्ट बॉक्स पर क्लिक करें और पुरे टेक्स्ट को चुनें अब इसे डिलीट करें
+103085_w5Jyq3XMbb3WwiKQ_0037 अब निम्न टाइप करें : reduce costs reduce dependence on few vendors develop customized applications
+103085_w5Jyq3XMbb3WwiKQ_0038 libreoffice writer documents में font का प्रकार और font size को जिस प्रकार बदला था यहाँ भी वैसे ही कर सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0039 text की एक line चुनें text format टूलबार में font type को albany से arial black में बदलें
+103085_w5Jyq3XMbb3WwiKQ_0040 और font size को 32 से 40 में बदलें
+103085_w5Jyq3XMbb3WwiKQ_0041 text box से बाहर कहीं भी click करें
+103085_w5Jyq3XMbb3WwiKQ_0042 ध्यान दें कि font बदल गई है
+103085_w5Jyq3XMbb3WwiKQ_0043 हम main menu से format पर क्लिक करके और फिर character option पर क्लिक करके भी font को बदल सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0044 यह एक डायलॉग बॉक्स खोलेगा जिसमें हम अपनी आवश्यकतानुसार फॉन्ट स्टाइल और साइज़ सेट कर सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0045 इस डायलॉग बॉक्स को बंद करते हैं
+103085_w5Jyq3XMbb3WwiKQ_0046 font का color बदलने के लिए हम development up to present नामक slide को चुनते हैं
+103085_w5Jyq3XMbb3WwiKQ_0047 body text box पर click करते हैं और फिर सारे text को चुनते हैं
+103085_w5Jyq3XMbb3WwiKQ_0048 font color icon के पास में डाउन arrow पर click करें और जो चाहिए वो color चुनें
+103085_w5Jyq3XMbb3WwiKQ_0049 text box के बाहर कहीं भी click करें
+103085_w5Jyq3XMbb3WwiKQ_0050 colour में हुए बदलाव को देखें
+103085_w5Jyq3XMbb3WwiKQ_0051 libreoffice documents में जिस प्रकार से bold italics और underline जैसे formatting की थी यहाँ भी उसी प्रकार से कर सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0052 recommendations नामक slide को चुनें
+103085_w5Jyq3XMbb3WwiKQ_0053 body text box पर click करें और text की एक line चुनें
+103085_w5Jyq3XMbb3WwiKQ_0054 अब bold italics और underline icons पर click करें
+103085_w5Jyq3XMbb3WwiKQ_0055 text box के बाहर कहीं भी click करें
+103085_w5Jyq3XMbb3WwiKQ_0056 text में हुए बदलाव पर ध्यान दें
+103085_w5Jyq3XMbb3WwiKQ_0057 अब हम इस tutorial की समाप्ति की ओर हैं
+103085_w5Jyq3XMbb3WwiKQ_0058 संक्षिप्त में बताते हैं कि हमने क्या सीखा इस tutorial में हमने इम्प्रेस विंडो के भागों के बारे में सीखा और कैसे स्लाइड इन्सर्ट करें और कॉपी करें फॉन्ट to फॉन्ट को फॉर्मेट करना सीखा
+103085_w5Jyq3XMbb3WwiKQ_0059 इस व्यापक नियत कार्य की कोशिश करें
+103085_w5Jyq3XMbb3WwiKQ_0060 एक नयी प्रस्तुति बनाए
+103085_w5Jyq3XMbb3WwiKQ_0061 तीसरी और चौथी slide के बीच एक slide जोड़ें
+103085_w5Jyq3XMbb3WwiKQ_0062 प्रस्तुति के अंत में चौथी स्लाइड की एक कॉपी बनाए
+103085_w5Jyq3XMbb3WwiKQ_0063 दूसरी स्लाइड में एक टेक्स्ट बॉक्स बनाए उसमें कुछ टेक्स्ट टाइप करें
+103085_w5Jyq3XMbb3WwiKQ_0064 text के format को 32 font size में बदलें
+103085_w5Jyq3XMbb3WwiKQ_0065 text को bold italic underlined करें और नीला रंग दें
+103085_w5Jyq3XMbb3WwiKQ_0066 निम्न link पर उपलब्ध video देखें
+103085_w5Jyq3XMbb3WwiKQ_0067 यह spoken tutorial project को सारांशित करता है
+103085_w5Jyq3XMbb3WwiKQ_0068 यदि आपके पास अच्छा bandwidth नहीं है तो आप इसे download करके देख सकते हैं
+103085_w5Jyq3XMbb3WwiKQ_0069 spoken tutorial project team spoken tutorial का उपयोग करके कार्यशालाएँ भी चलाते हैं
+103085_w5Jyq3XMbb3WwiKQ_0070 जो online test pass करते हैं उनको प्रमाणपत्र भी देते हैं
+103085_w5Jyq3XMbb3WwiKQ_0071 अधिक जानकारी के लिए कृपया हमें contact @spokentutorial org पर लिखें
+103085_w5Jyq3XMbb3WwiKQ_0072 spoken tutorial project talktoateacher project का हिस्सा है
+103085_w5Jyq3XMbb3WwiKQ_0073 यह भारत सरकार के एमएचआरडी के आईसीटी के माध्यम से राष्ट्रीय साक्षरता mission द्वारा समर्थित है
+103085_w5Jyq3XMbb3WwiKQ_0074 इस mission पर अधिक जानकारी के लिए उपलब्ध लिंक पर संपर्क करें
+103085_w5Jyq3XMbb3WwiKQ_0075 यह स्क्रिप्ट सकीना शेख द्वारा अनुवादित है आईआई टी बॉम्बे की ओर से मैं रवि कुमार अब आपसे विदा लेता हूँ
+103085_w5Jyq3XMbb3WwiKQ_0076 हमसे जुड़ने के लिए धन्यवाद
