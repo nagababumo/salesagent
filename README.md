@@ -369,3 +369,109 @@ Hardware, Python/PyTorch versions, model revisions, and runtime device can affec
 * CUDA is used automatically when available.
 * Inference is performed locally.
 * Customer audio should not be sent to external commercial APIs.
+
+
+# Day 2 (Error Analysis)
+
+
+## Overall Comparison
+
+| Model | Avg WER | Avg CER | Avg RTF | Key Observation |
+|---|---:|---:|---:|---|
+| **ARTPARK-IISc/SraVaani-1.0** | **35.25%** | 38.80% | 0.195 | Best overall Hindi WER |
+| **NVIDIA Nemotron 3.5 ASR 0.6B** | 41.61% | 42.03% | **0.133** | Fastest model |
+| **OpenAI Whisper large-v3-turbo** | 43.44% | **38.43%** | 2.794 | Best English/code-switch preservation |
+| **AI4Bharat IndicConformer-600M** | 44.21% | 45.29% | 0.238 | Good short Hindi recognition |
+| **vasista22/whisper-hindi-medium** | 51.64% | 52.68% | 1.835 | Highest overall error |
+
+*Avg = mean of clean and telephony aggregate results over the 3 samples.*
+
+## Main Error Buckets
+
+| Bucket | Main Finding |
+|---|---|
+| **Code-switch / script** | Largest problem. English words are often converted to Devanagari or lost at language boundaries. |
+| **Long-audio / segmentation** | Long 413s tutorial causes deletions, compression and tail truncation. |
+| **Named entities** | Names and technical terms are sometimes phonetically confused. |
+| **Numbers / dates** | Digit vs spoken-number mismatch, e.g. `उन्नीस सौ तिरानवे` → `1993`. |
+| **Accent / dialect** | Mostly visible in the Lahaja sample. |
+| **Noise / telephony** | Model-dependent; SraVaani and IndicConformer remain relatively stable, while Vasista degrades. |
+| **Normalization artefacts** | Variants such as `फ़िल्म` / `फिल्म` / `फ़िल्म` can be counted as errors. |
+| **Hallucination** | No confirmed hallucination from the supplied results. |
+| **Short utterances** | Not sufficiently tested in the current benchmark. |
+
+## Representative Errors
+
+| Type | Reference | Hypothesis |
+|---|---|---|
+| Code-switch | `document` | `डॉक्यूमेंट` |
+| Code-switch | `gnu/linux` | `जेएनयू लिनक्स` |
+| Number | `उन्नीस सौ तिरानवे` | `1993` |
+| Named entity | `किम` | `कीम` / `टीम` |
+| Long audio | Full closing section | Tail content truncated |
+
+## Model Summary
+
+**SraVaani**
+- Best overall WER.
+- Strongest on short Hindi samples.
+- Fast.
+- Main weakness: poor English/code-switch preservation.
+
+**Whisper large-v3-turbo**
+- Best CER.
+- Strongest English/code-mixed preservation.
+- Much slower than the other models.
+- Weaker on the Lahaja sample.
+
+**Nemotron 3.5 ASR**
+- Fastest.
+- Good quality/latency trade-off.
+- Code-switch accuracy and long-audio truncation are concerns.
+
+**IndicConformer**
+- Good short Hindi recognition.
+- Fast.
+- Long mixed-language speech remains difficult.
+
+**Vasista Hindi Medium**
+- Good first short sample.
+- Highest overall WER/CER.
+- Larger telephony degradation.
+
+
+## Error Analysis & Failure Hypotheses
+
+| Error Bucket | Likely Cause |
+|---|---|
+| **Code-switch / Script** | Mainly **training-data and decoding bias** toward Hindi script; English technical words are often transliterated into Devanagari. |
+| **Numbers / Dates** | **Decoding + normalization** differences between spoken numbers and digits (`उन्नीस सौ तिरानवे` ↔ `1993`). |
+| **Named Entities** | **Limited training coverage + acoustic ambiguity** for names, places, brands, and technical terms. |
+| **Noise / Telephony** | **Audio front-end + training robustness**; 8 kHz/noisy speech can increase substitutions and deletions. |
+| **Accent / Dialect** | **Training-data coverage** of regional pronunciation and dialect variation. |
+| **Long Audio / Segmentation** | **Chunking, context limits, and decoding** can cause deletions or truncation in long recordings. |
+| **Normalization Artefacts** | **Scoring/normalization issue**, especially for Hindi orthographic variants such as `फ़िल्म` / `फिल्म` / `फ़िल्म`. |
+| **Hallucination / Short Utterances** | Not confirmed or sufficiently represented in this benchmark. |
+
+### Model-specific observations
+
+| Model | Main Observed Weakness |
+|---|---|
+| **SraVaani** | Strong Hindi accuracy, but weak **English/code-switch preservation**. |
+| **Whisper large-v3-turbo** | Better **code-switch handling**, but slower and less consistent on some Hindi/accent samples. |
+| **Nemotron 3.5 ASR** | Very fast, but **code-switch and long-audio handling** need attention. |
+| **IndicConformer-600M** | Good short Hindi performance, but more **long-audio deletions**. |
+| **Vasista Hindi Medium** | More **telephony degradation** and weaker long mixed-language performance. |
+
+## Recommended 2-Model Shortlist
+
+### 1. ARTPARK-IISc/SraVaani-1.0
+Best choice for **overall Hindi ASR accuracy and speed** in this benchmark.
+
+### 2. OpenAI Whisper large-v3-turbo
+Useful as a **complementary model for Hindi-English code-switched speech**, especially where preserving English terminology matters.
+
+### Why These Two?
+
+SraVaani has the lowest overall WER, while Whisper preserves English/code-mixed terminology better. The two therefore cover the main strengths and weaknesses observed in the benchmark.
+
