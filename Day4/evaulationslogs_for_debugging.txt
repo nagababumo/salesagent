@@ -1,0 +1,1749 @@
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from 'zero-stt-hinglish/Vaani_sample_02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing 'zero-stt-hinglish/Vaani_sample_02.wav' (195392 samples, 12.2 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:30.000]   यह एक सॉप का द्रिष्थ से है तथा यहाँ पे काफी सारे box वैगे रह दिख रहे हैं जो कि brown और white करके दिखाई दे रहे हैं तथा कुछ दवाई की botas दिख रहे हैं जो कि black और white करके दिखाई दे रहे हैं
+
+whisper_print_timings:     load time =  5117.51 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =   115.39 ms
+whisper_print_timings:   sample time =  1299.57 ms /   857 runs (     1.52 ms per run)
+whisper_print_timings:   encode time = 72955.41 ms /     1 runs ( 72955.41 ms per run)
+whisper_print_timings:   decode time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:   batchd time = 125460.28 ms /   855 runs (   146.74 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 206485.59 ms
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/01-00159-02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/01-00159-02.wav' (152208 samples, 9.5 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:10.000]   इसके सुन्योवाले उन सरकार या बाकिका समर्थ कमर्थक होते हैं हैं आमनहरिज नहीं इसी लिए उनको लाव नहीं लिल्पाता है बन्युवाद
+
+whisper_print_timings:     load time =  6183.73 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =   171.47 ms
+whisper_print_timings:   sample time =   945.58 ms /   607 runs (     1.56 ms per run)
+whisper_print_timings:   encode time = 85151.41 ms /     1 runs ( 85151.41 ms per run)
+whisper_print_timings:   decode time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:   batchd time = 88000.41 ms /   605 runs (   145.46 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 182665.92 ms
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/audio.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/audio.wav' (186288 samples, 11.6 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:30.000]   कीम ने 1993 में फिल्म उध्योग से संयास ले लिया उनकी आखरी फिल्म में प्रत्तिकार हनीमून बलवान मुस्कराहत और बुलन में अतिती बुमिकाये थी
+
+whisper_print_timings:     load time =  2831.36 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =   107.18 ms
+whisper_print_timings:   sample time =   998.99 ms /   647 runs (     1.54 ms per run)
+whisper_print_timings:   encode time = 74275.76 ms /     1 runs ( 74275.76 ms per run)
+whisper_print_timings:   decode time =   266.45 ms /     1 runs (   266.45 ms per run)
+whisper_print_timings:   batchd time = 95258.10 ms /   644 runs (   147.92 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 174583.88 ms
+
+
+
+
+this below result upto that it has took 43 minutes :
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 1
+whisper_model_load: qntvr         = 0
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =  1533.14 MB
+whisper_model_load: model size    = 1533.14 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/w5Jyq3XMbb3WwiKQ.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/w5Jyq3XMbb3WwiKQ.wav' (6608000 samples, 413.0 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:09.040]    LibreOffice Impress में एक प्रस्तुती document बनाना और बुन्यादी formatting के इस spoken tutorial में आपका स्वागत है
+[00:00:09.040 --> 00:00:21.200]   इस tutorial में हम Impress window के भागों के बारे में सीखेंगे और कैसे slide insert करें और copy करें font तदा font को format करना सीखेंगे
+[00:00:21.200 --> 00:00:29.200]   यहाँ हम अपने operating system के रूप में jnun Linux और LibreOffice वर्जन 3.3.4 का उपयोग कर रहे हैं
+[00:00:29.200 --> 00:00:35.200]   चलिये अपनी प्रस्तुति sampleimplus ओपन करते हैं जिसे पिछले tutorial में बनाया था
+[00:00:35.200 --> 00:00:38.200]   चलिये देखते हैं कि screen पर क्या क्या है
+[00:00:38.200 --> 00:00:45.200]   madhya me hum khali jaka dekhte hain jo ki workspace hain jaha hum kaam karenge
+[00:00:45.200 --> 00:00:50.200]   jaise ki aap dekh skte hain workspace me paanch tabs hain jine view buttons kehte hain
+[00:00:50.200 --> 00:00:55.200]   fidhal normal tab chunith hain ya mukhya view hain alag alag slide banane ke liye
+[00:00:55.200 --> 00:01:03.200]   outline view pratyek slide ke outline format me vishaya sheershak bulleted aur kramaanke suchiya batata hain
+[00:01:03.200 --> 00:01:07.200]   notes view pratyek slide me note jodhne ki suvidha deta hain
+[00:01:07.200 --> 00:01:15.200]   jo ki prasthutikarna ke vakt nazar nahi aate handout view slides ko handout ke roop me print karne ke suvidha deta hain
+[00:01:15.200 --> 00:01:20.200]   yaha hme ek page pr kitne slide print karne hain iska chunnav kar sakte hain
+[00:01:20.200 --> 00:01:24.200]   slide sorter view slides ki thumbnail patata hain
+[00:01:24.200 --> 00:01:27.200]   aap phir se normal view button pr click karthe hain
+[00:01:27.200 --> 00:01:30.200]   screen ki baai or aap slides pane dekhte hain
+[00:01:30.200 --> 00:01:35.200]   yaha prasthutik me slides ke thumbnail sammilit karta hain
+[00:01:35.200 --> 00:01:40.200]   daane taraf tasks pane hain jisme anubhag hain
+[00:01:40.200 --> 00:01:44.200]   layout section me pehle se hi kuch sample layouts maujood hain
+[00:01:44.200 --> 00:01:46.200]   hme unka upyog aise hi kar sakte hain
+[00:01:46.200 --> 00:01:49.200]   yaha aavashiktaan unsar kuch badlaav karke upyog kar sakte hain
+[00:01:49.200 --> 00:01:53.200]   jaise jaise hme in tutorials me aage badhenge
+[00:01:53.200 --> 00:01:55.200]   in sections ko vistaar me dekhenge
+[00:01:55.200 --> 00:01:59.200]   chali aap seekhte hain ki kaisa slide ko insert karne yaani jodhne
+[00:01:59.200 --> 00:02:05.200]   slides pane me dosri slide pr click karke usse chunne aap insert aur slide pr click karne
+[00:02:05.200 --> 00:02:09.200]   hme dekhte hain ki dosri slide ke baad ek nahi khali slide jodh gayi hain
+[00:02:13.200 --> 00:02:19.200]   slide pr shirshak klikne ke liye text bar me click to add title pr click karne
+[00:02:19.200 --> 00:02:24.200]   aap short term strategy type karne aap text box ke bahar click karne
+^C
+
+
+
+ggml_common_quantize_0: model size  =  2913.89 MB
+ggml_common_quantize_0: quant size  =   513.64 MB | ftype = 13 (q5_K)
+
+main: quantize time = 117597.82 ms
+main:    total time = 117597.82 ms
+----------------------------------------
+ggml_common_quantize_0: model size  =  2913.89 MB
+ggml_common_quantize_0: quant size  =   423.31 MB | ftype = 12 (q4_K)
+
+main: quantize time = 137443.16 ms
+main:    total time = 137443.16 ms
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q5_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 13
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =   538.59 MB
+whisper_model_load: model size    =  538.59 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from 'zero-stt-hinglish/Vaani_sample_02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing 'zero-stt-hinglish/Vaani_sample_02.wav' (195392 samples, 12.2 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:30.000]   यह एक सॉब का द्रिष्स से है तथा यहाँ पे काफी सारे box वैगे रह दिखरे हैं जो कि brown और white करके दिखाई दे रहे हैं तथा कुछ दवाई की boters दिखरे हैं जो कि black और white करके दिखाई दे रहे हैं
+
+whisper_print_timings:     load time =   536.55 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =    76.99 ms
+whisper_print_timings:   sample time =  1287.03 ms /   832 runs (     1.55 ms per run)
+whisper_print_timings:   encode time = 66733.42 ms /     1 runs ( 66733.42 ms per run)
+whisper_print_timings:   decode time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:   batchd time = 110508.85 ms /   830 runs (   133.14 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 180502.22 ms
+
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q4_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 12
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:   CPU_REPACK total size =   396.36 MB
+whisper_model_load:          CPU total size =    47.51 MB
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+whisper_model_load: model size    =  443.87 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from 'zero-stt-hinglish/Vaani_sample_02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing 'zero-stt-hinglish/Vaani_sample_02.wav' (195392 samples, 12.2 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:30.000]   यह एक सौब का द्रिस्स से है तथा यहाँ पे काफी सारे box वैगे रह दिख रहे हैं जो कि brown और white करके दिखाई दिरहे हैं तथा कुछ दावाई की botus दिख रहे हैं जो कि black और white करके दिखाई दिरहे हैं
+
+whisper_print_timings:     load time =  2832.29 ms
+whisper_print_timings:     fallbacks =   0 p /   1 h
+whisper_print_timings:      mel time =    82.22 ms
+whisper_print_timings:   sample time =  1353.24 ms /   877 runs (     1.54 ms per run)
+whisper_print_timings:   encode time = 44613.70 ms /     1 runs ( 44613.70 ms per run)
+whisper_print_timings:   decode time =  3879.25 ms /    20 runs (   193.96 ms per run)
+whisper_print_timings:   batchd time = 94523.20 ms /   855 runs (   110.55 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 147850.09 ms
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q5_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 13
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =   538.59 MB
+whisper_model_load: model size    =  538.59 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/01-00159-02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/01-00159-02.wav' (152208 samples, 9.5 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:07.820]   आमनहरिज नहीं इसी ले उनको लाव नहीं नुल पाता है बन्युवाद
+[00:00:07.820 --> 00:00:11.820]   और आमनहरिज नहीं इसी ले उनको लाव नहीं नुल पाता है भन्युवाद
+
+whisper_print_timings:     load time =  1806.45 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =    95.26 ms
+whisper_print_timings:   sample time =   669.41 ms /   436 runs (     1.54 ms per run)
+whisper_print_timings:   encode time = 68358.86 ms /     1 runs ( 68358.86 ms per run)
+whisper_print_timings:   decode time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:   batchd time = 64567.46 ms /   434 runs (   148.77 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 137104.55 ms
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q5_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 13
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:          CPU total size =   538.59 MB
+whisper_model_load: model size    =  538.59 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/audio.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/audio.wav' (186288 samples, 11.6 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:11.500]   Keem took a film career in 1993. His last film was a movie about revenge, honeymoon, a strong smile, and a guest in a high-class house.
+
+whisper_print_timings:     load time =   642.39 ms
+whisper_print_timings:     fallbacks =   1 p /   0 h
+whisper_print_timings:      mel time =    57.65 ms
+whisper_print_timings:   sample time =   559.02 ms /   370 runs (     1.51 ms per run)
+whisper_print_timings:   encode time = 66677.73 ms /     1 runs ( 66677.73 ms per run)
+whisper_print_timings:   decode time =  1560.76 ms /     6 runs (   260.13 ms per run)
+whisper_print_timings:   batchd time = 48457.69 ms /   360 runs (   134.60 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 118604.96 ms
+
+
+
+
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q4_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 12
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:   CPU_REPACK total size =   396.36 MB
+whisper_model_load:          CPU total size =    47.51 MB
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+whisper_model_load: model size    =  443.87 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/audio.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/audio.wav' (186288 samples, 11.6 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:11.520]   keem ne 1993 me film udhyog se sanyas le liya unki aakhri film me pratikar honeymoon balwan muskarahat aur bulan me athithi bhumikaiti
+
+whisper_print_timings:     load time =  1587.58 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =    79.21 ms
+whisper_print_timings:   sample time =   363.60 ms /   246 runs (     1.48 ms per run)
+whisper_print_timings:   encode time = 36745.64 ms /     1 runs ( 36745.64 ms per run)
+whisper_print_timings:   decode time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:   batchd time = 29254.38 ms /   244 runs (   119.90 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 68559.89 ms
+
+
+
+whisper_init_from_file_with_params_no_state: loading model from 'zero-stt-converted/ggml-model-q4_k.bin'
+whisper_init_with_params_no_state: use gpu    = 1
+whisper_init_with_params_no_state: flash attn = 1
+whisper_init_with_params_no_state: gpu_device = 0
+whisper_init_with_params_no_state: dtw        = 0
+whisper_init_with_params_no_state: devices    = 1
+whisper_init_with_params_no_state: backends   = 1
+whisper_model_load: loading model
+whisper_model_load: n_vocab       = 51865
+whisper_model_load: n_audio_ctx   = 1500
+whisper_model_load: n_audio_state = 1024
+whisper_model_load: n_audio_head  = 16
+whisper_model_load: n_audio_layer = 24
+whisper_model_load: n_text_ctx    = 448
+whisper_model_load: n_text_state  = 1024
+whisper_model_load: n_text_head   = 16
+whisper_model_load: n_text_layer  = 24
+whisper_model_load: n_mels        = 80
+whisper_model_load: ftype         = 12
+whisper_model_load: qntvr         = 2
+whisper_model_load: type          = 4 (medium)
+whisper_model_load: adding 1607 extra tokens
+whisper_model_load: n_langs       = 99
+whisper_model_load:   CPU_REPACK total size =   396.36 MB
+whisper_model_load:          CPU total size =    47.51 MB
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+repack: repack tensor  with q4_K_8x8
+whisper_model_load: model size    =  443.87 MB
+whisper_backend_init_gpu: device 0: CPU (type: 0)
+whisper_backend_init_gpu: no GPU found
+whisper_init_state: kv self size  =   50.33 MB
+whisper_init_state: kv cross size =  150.99 MB
+whisper_init_state: kv pad  size  =    6.29 MB
+whisper_init_state: compute buffer (conv)   =   28.57 MB
+whisper_init_state: compute buffer (encode) =   44.60 MB
+whisper_init_state: compute buffer (cross)  =    7.73 MB
+whisper_init_state: compute buffer (decode) =   98.20 MB
+read_audio_data: reading audio data from '/content/01-00159-02.wav' ...
+read_audio_data: trying to decode with miniaudio
+
+system_info: n_threads = 4 / 2 | WHISPER : VITISAI = 0 | COREML = 0 | OPENVINO = 0 | CPU : SSE3 = 1 | SSSE3 = 1 | AVX = 1 | AVX2 = 1 | F16C = 1 | FMA = 1 | BMI2 = 1 | OPENMP = 1 | REPACK = 1 | 
+
+main: processing '/content/01-00159-02.wav' (152208 samples, 9.5 sec), 4 threads, 1 processors, 5 beams + best of 5, lang = en, task = transcribe, timestamps = 1 ...
+
+
+[00:00:00.000 --> 00:00:08.980]   आमनहरिज नहीं इसले उनको लाव नहीं नुल पाता है बन्युवाद
+[00:00:08.980 --> 00:00:19.980]   आमनहरिज नहीं इसले उनको लाव नहीं नुल पाता है बन्युवाद
+
+whisper_print_timings:     load time =  1363.85 ms
+whisper_print_timings:     fallbacks =   0 p /   0 h
+whisper_print_timings:      mel time =    83.90 ms
+whisper_print_timings:   sample time =   637.24 ms /   386 runs (     1.65 ms per run)
+whisper_print_timings:   encode time = 37622.62 ms /     1 runs ( 37622.62 ms per run)
+whisper_print_timings:   decode time =  9806.59 ms /    47 runs (   208.65 ms per run)
+whisper_print_timings:   batchd time = 40549.93 ms /   337 runs (   120.33 ms per run)
+whisper_print_timings:   prompt time =     0.00 ms /     1 runs (     0.00 ms per run)
+whisper_print_timings:    total time = 90649.62 ms

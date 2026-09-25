@@ -967,5 +967,192 @@ speaker_whisper_results/
 The saved files allow direct inspection of the exact audio passed to Whisper for each stage.
 
 
+# (DAY4) Part 5 — Low-Resource CPU ASR Benchmark
+
+## Objective
+
+Evaluate `shunyalabs/zero-stt-hinglish` against a low-resource CPU deployment target of **4 vCPU / 8–16 GB RAM, no GPU**, focusing on:
+
+- Real-time factor (RTF), ideally **< 0.3**
+- Inference latency
+- Quantization impact on speed and memory
+- WER impact of quantization
+- Concurrent request capacity
+- Reproducible evaluation
+
+## Model and Runtime Used
+
+**Model:** `shunyalabs/zero-stt-hinglish`  
+**Base architecture:** OpenAI Whisper Medium  
+**Runtime successfully tested:** `whisper.cpp`  
+**Variants tested:** FP16, Q5_K, Q4_K  
+**Execution:** Google Colab CPU path, 4 threads; `whisper.cpp` reported `no GPU found`
+
+The checkpoint is loaded as Whisper **Medium**, with 24 encoder layers, 24 decoder layers, 1024-dimensional audio/text states, 16 attention heads, 80 mel bins and a 51,865-token vocabulary. The runtime reported a loaded model size of about **1533 MB for FP16**, **539 MB for Q5_K**, and **444 MB for Q4_K**.
+
+> **Environment note:** measurements were obtained in Google Colab rather than on a dedicated 4-vCPU / 8–16 GB RAM VM. The benchmark logs show 4 threads and a CPU execution path with no GPU available, so the results are useful for comparison but should be treated as directional for production hardware.
+
+## Architecture / Workflow
+
+```mermaid
+flowchart LR
+    A[Hugging Face<br/>zero-stt-hinglish] --> B[model.safetensors]
+    B --> C[HF to GGML conversion]
+    C --> D[FP16 GGML]
+    D --> E[Q5_K]
+    D --> F[Q4_K]
+
+    D --> G[whisper.cpp]
+    E --> G
+    F --> G
+
+    G --> H[WAV audio]
+    H --> I[Log-Mel features]
+    I --> J[Whisper Encoder]
+    J --> K[Whisper Decoder]
+    K --> L[Transcript]
+
+    G --> M[Load time]
+    G --> N[Inference time / RTF]
+    G --> O[Model memory]
+    L --> P[Reference transcript → WER]
+```
+
+## Project Journey
+
+1. Started with the Hugging Face `shunyalabs/zero-stt-hinglish` checkpoint.
+2. Found that the initial `model.safetensors` was a Git-LFS pointer, so the actual weights were downloaded from Hugging Face Hub.
+3. Converted the Hugging Face Whisper checkpoint to the GGML format used by `whisper.cpp`.
+4. Ran the FP16 model with `whisper-cli`.
+5. Quantized the F32 GGML source to **Q5_K** and **Q4_K**.
+6. Ran the three short WAV files through FP16, Q5_K and Q4_K using 4 threads.
+7. Captured model size, load time, inference time and RTF from the `whisper.cpp` logs.
+8. Attempted a **413-second** long audio file; the FP16 run was interrupted after roughly **43 minutes**.
+9. Attempted concurrency testing, but the Colab runtime/dependency setup did not produce a stable multi-request server benchmark.
+10. Faster-Whisper, ONNX Runtime, sherpa-onnx and OpenVINO were not completed because the available compute/runtime environment did not allow a reliable apples-to-apples CPU comparison.
+
+## Main Results
+
+### Runtime × Quantization Summary
+
+WER is calculated against the two supplied short-audio references: `01-00159-02.wav` and `audio.wav`. The third long-audio reference is discussed separately because the corresponding FP16 evaluation was interrupted and Q4_K/Q5_K full-long-audio results were not completed.
+
+| Runtime | Quantization | WER | RTF on 3 short clips | Reported model memory | Latency per short clip | Concurrency |
+|---|---|---:|---:|---:|---:|---|
+| **whisper.cpp** | **FP16** | **39.13% pooled** | **15.05–19.23** | **1533.14 MB** | **174.58–206.49 s** | Not measured |
+| **whisper.cpp** | **Q5_K** | **95.65% pooled** | **10.22–14.80** | **538.59 MB** | **118.60–180.50 s** | Not measured |
+| **whisper.cpp** | **Q4_K** | **84.78% pooled** | **5.91–12.12** | **443.87 MB** | **68.56–147.85 s** | Not measured |
+| faster-whisper | int8 | Not run | — | — | — | — |
+| ONNX Runtime | int8 / dynamic | Not run | — | — | — | — |
+| sherpa-onnx | int8 / supported model formats | Not run | — | — | — | — |
+| OpenVINO | int8 | Not run | — | — | — | — |
+
+> **WER interpretation:** this is a very small evaluation set (**2 reference clips / 46 reference words**). The WER values demonstrate the quantization-quality measurement workflow, but they are not a representative model-wide accuracy estimate.
+
+### Per-Audio WER
+
+WER was computed as word-level Levenshtein distance after Unicode normalization, lowercasing, punctuation removal and whitespace tokenization.
+
+| Audio | Reference words | FP16 WER | Q5_K WER | Q4_K WER |
+|---|---:|---:|---:|---:|
+| `01-00159-02.wav` | 22 | **59.09%** | **77.27%** | **72.73%** |
+| `audio.wav` | 24 | **20.83%** | **112.50%** | **95.83%** |
+| **Pooled** | **46** | **39.13%** | **95.65%** | **84.78%** |
+
+### Quantization WER Cost
+
+Using pooled WER relative to FP16:
+
+| Variant | Pooled WER | Change vs FP16 |
+|---|---:|---:|
+| FP16 | **39.13%** | baseline |
+| Q5_K | **95.65%** | **+56.52 percentage points** |
+| Q4_K | **84.78%** | **+45.65 percentage points** |
+
+The largest degradation appeared on `audio.wav`: the Q5_K output switched to an English paraphrase rather than matching the Hindi reference, producing **112.50% WER**. This illustrates why quantization must be evaluated on both system metrics and recognition quality.
+
+## Per-Audio Latency and RTF
+
+`RTF = inference total time / audio duration`.
+
+| Audio | Duration | FP16 latency / RTF | Q5_K latency / RTF | Q4_K latency / RTF |
+|---|---:|---:|---:|---:|
+| `Vaani_sample_02.wav` | 12.2 s | 206.49 s / **16.93** | 180.50 s / **14.80** | 147.85 s / **12.12** |
+| `01-00159-02.wav` | 9.5 s | 182.67 s / **19.23** | 137.10 s / **14.43** | 90.65 s / **9.54** |
+| `audio.wav` | 11.6 s | 174.58 s / **15.05** | 118.60 s / **10.22** | 68.56 s / **5.91** |
+| **Mean** | — | **187.91 s / 17.07** | **145.40 s / 13.15** | **102.35 s / 9.19** |
+
+The timing logs show the same trend across all three clips: Q4_K had the lowest measured latency/RTF, followed by Q5_K, then FP16.
+
+## Quantization Results
+
+The quantization step used an F32 GGML source of about **2913.89 MB** and produced:
+
+| Variant | Quantized file size | Reduction vs F32 source |
+|---|---:|---:|
+| Q5_K | **513.64 MB** | **82.37%** |
+| Q4_K | **423.31 MB** | **85.47%** |
+
+At inference time, the loaded model sizes were approximately:
+
+- **FP16:** 1533.14 MB
+- **Q5_K:** 538.59 MB
+- **Q4_K:** 443.87 MB
+
+## Long-Audio Evaluation
+
+A separate **413-second** audio file was tested with the FP16 model. The run produced transcription for the beginning of the recording but was manually interrupted after roughly **43 minutes**. The log contains output through approximately 2:24 of the audio before interruption.
+
+Because that run is incomplete, a full-file WER would be misleading: the hypothesis does not cover the complete reference transcript. Q5_K and Q4_K were also not completed end-to-end on this long file.
+
+**Long-audio WER: Not reported because the completed hypothesis did not cover the full reference.**
+
+## Concurrency
+
+Concurrency testing was attempted to determine how many simultaneous requests one machine could serve at acceptable latency. The Colab runtime/dependency setup prevented a stable multi-request server benchmark, so no defensible p95 latency/throughput curve was obtained.
+
+Therefore:
+
+**Concurrency: Not measured**
+
+This is intentionally left blank rather than inferred from sequential `whisper-cli` execution. The proper follow-up is to run the persistent `whisper.cpp` server on the target **4-vCPU / 8–16 GB RAM** machine and measure concurrency using controlled concurrent requests.
+
+## Runtime Coverage
+
+| Runtime | Status | Result |
+|---|---|---|
+| `whisper.cpp` | **Completed** | HF conversion, FP16 inference, Q5_K/Q4_K quantization and CPU timing completed. |
+| faster-whisper / CTranslate2 | Not benchmarked | Compute/time constraints prevented a reliable comparison. |
+| ONNX Runtime | Not benchmarked | No reliable CPU benchmark completed. |
+| sherpa-onnx | Not benchmarked | No completed supported model path for this checkpoint. |
+| OpenVINO | Not benchmarked | No reliable CPU benchmark completed. |
+
+## Reproducibility
+
+The complete reproduction workflow, commands, model conversion steps, quantization commands, inference runs, reference transcripts and evaluation outputs are documented in the **Day 4 notebook attached in the Day 4 folder**.
+
+This README intentionally summarizes the experiment rather than duplicating the notebook.
+
+## Target vs Measured
+
+| Metric | Target | Observed |
+|---|---:|---:|
+| CPU | 4 vCPU | Colab CPU path, 4 threads |
+| RAM | 8–16 GB | Colab runtime |
+| GPU | None | No GPU used by measured inference path |
+| RTF | **< 0.3** | **5.91–19.23** on short clips |
+| Quantization | int8 / low-bit | **Q5_K / Q4_K** |
+| WER cost | Must be measured | Measured on 2 short reference clips |
+| Concurrency | Must be measured | Not measured due to Colab server/runtime limitations |
+
+## Practical Conclusion
+
+The experiment established an end-to-end CPU optimization path for a Whisper Medium Hinglish checkpoint:
+
+**Hugging Face → GGML → FP16 → Q5_K/Q4_K → CPU inference → WER + RTF + memory measurement**
+
+Quantization substantially reduced the model footprint and improved inference speed, but the measured **RTF remained far above the <0.3 target**. The small reference set also shows a measurable accuracy cost: pooled WER increased from **39.13% (FP16)** to **95.65% (Q5_K)** and **84.78% (Q4_K)** in these two short clips.
+
+The main engineering outcome is the measurement methodology: accuracy and systems metrics were evaluated together rather than assuming that lower-bit quantization is automatically free. The next validation step is to repeat the same benchmark on a dedicated 4-vCPU / 8–16 GB RAM machine and add a valid concurrency test.
 
 
