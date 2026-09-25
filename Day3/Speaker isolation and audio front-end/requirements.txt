@@ -1,0 +1,9 @@
+torch
+transformers
+accelerate
+soundfile
+scipy
+psutil
+jiwer
+silero-vad
+pyannote.audio

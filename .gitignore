@@ -9,3 +9,6 @@ __pycache__/
 notes.txt
 output.txt
 output1.txt
+transcriptions.jsonl
+evaluations.txt
+extrasamples.txt

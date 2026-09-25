@@ -475,3 +475,497 @@ Useful as a **complementary model for Hindi-English code-switched speech**, espe
 
 SraVaani has the lowest overall WER, while Whisper preserves English/code-mixed terminology better. The two therefore cover the main strengths and weaknesses observed in the benchmark.
 
+# Day 3 
+  Part 3: Improvement plan :
+   1.I have provided the wer reduction plan document here based on error analysis : Day3\Plan to Reduce WER.docx
+
+   2. for the prototype , i have made whisper lora finetuning code to handle hinglish (code mix of hindi and english ) with approriate normalizer and preprocessing and dataset preparation . due to lack of gpu i haven't performed execution . 
+
+   #part 4 
+
+   # Modular Speaker Isolation + Whisper ASR
+
+A modular audio front-end and ASR evaluation pipeline for conversational Indian-language speech using **`openai/whisper-large-v3-turbo`**.
+
+The project evaluates the effect of:
+
+- Stereo channel selection
+- Silero VAD
+- Pyannote speaker diarization
+- Whisper ASR
+- WER / CER
+- RTF / latency
+
+> **DeepFilterNet was initially explored but removed from the final pipeline because its `df` dependency was not reliably supported in the Colab environment. It is not part of the current implementation or results.**
+
+---
+
+## 1. Architecture
+
+### Earlier architecture explored
+
+```text
+Input Audio
+     |
+     +--> Channel Selection
+     +--> VAD
+     +--> Diarization
+     +--> DeepFilterNet
+              |
+              v
+           Whisper
+              |
+          WER / CER / RTF
+```
+
+### Current architecture
+
+```text
+                         Input Audio
+                              |
+                       Load / 16 kHz
+                              |
+              +---------------+---------------+
+              |               |               |
+             RAW          Channel        Diarization
+                          Selection            |
+              |               |          Target Speaker
+              +---------------+---------------+
+                              |
+                         Optional VAD
+                              |
+                              v
+                  Whisper-large-v3-turbo
+                              |
+                         WER / CER / RTF
+```
+
+Whisper is kept fixed while the front-end stage changes, allowing preprocessing techniques to be compared consistently.
+
+---
+
+## 2. Project Structure
+
+```text
+speaker_whisper/
+├── main.py
+├── config.py
+├── audio_utils.py
+├── channel_separator.py
+├── vad_processor.py
+├── diarization_processor.py
+├── whisper_asr.py
+├── metrics.py
+└── experiment_runner.py
+```
+
+| File | Purpose |
+|---|---|
+| `main.py` | Entry point and CLI |
+| `audio_utils.py` | Load, resample, mono conversion, save |
+| `channel_separator.py` | Left/right/average channel selection |
+| `vad_processor.py` | Silero VAD |
+| `diarization_processor.py` | Pyannote speaker isolation |
+| `whisper_asr.py` | Whisper ASR |
+| `metrics.py` | WER/CER |
+| `experiment_runner.py` | Connect and evaluate stages |
+
+---
+
+## 3. Available Stages
+
+| Stage | Workflow | Purpose |
+|---|---|---|
+| `raw` | Audio → Whisper | Baseline |
+| `right_channel` | Right channel → Whisper | Known stereo customer channel |
+| `vad` | Audio → VAD → Whisper | Remove non-speech |
+| `right_channel_vad` | Right channel → VAD → Whisper | Channel isolation + VAD |
+| `diarization` | Audio → Speaker isolation → Whisper | Mono multi-speaker audio |
+| `diarization_vad` | Speaker isolation → VAD → Whisper | Speaker isolation + VAD |
+
+`right_channel` stages require stereo audio. Channel position must be known from the recording setup; left/right alone does not identify the customer or agent.
+
+---
+
+## 4. Command-Line Flags
+
+| Flag | Purpose |
+|---|---|
+| `--file` | Input audio |
+| `--stage` | Stage to run or `all` |
+| `--language` | Whisper language (`hi`, `te`, `en`, etc.); `auto` disables forced language |
+| `--reference` | Reference text for WER/CER |
+| `--vad-threshold` | VAD speech-confidence threshold |
+| `--vad-min-speech-ms` | Minimum speech duration retained |
+| `--vad-min-silence-ms` | Silence duration used for segmentation |
+| `--vad-padding-ms` | Padding around detected speech |
+| `--target-speaker` | Speaker selected after diarization |
+| `--hf-token` | Hugging Face token for pyannote |
+| `--save-audio` | Save processed audio sent to Whisper |
+| `--output-dir` | Results directory |
+
+For short responses such as **`हाँ`**, **`जी`**, and **`नहीं`**, `--vad-min-speech-ms` and `--vad-padding-ms` are especially important.
+
+---
+
+## 5. Example Commands
+
+### Baseline
+
+```bash
+python main.py \
+    --file call.wav \
+    --language hi \
+    --stage raw
+```
+
+### VAD
+
+```bash
+python main.py \
+    --file call.wav \
+    --language hi \
+    --stage vad \
+    --vad-threshold 0.40 \
+    --vad-min-speech-ms 100 \
+    --vad-min-silence-ms 200 \
+    --vad-padding-ms 150
+```
+
+### Diarization + VAD
+
+```bash
+export HF_TOKEN="hf_..."
+
+python main.py \
+    --file call.wav \
+    --language hi \
+    --stage diarization_vad \
+    --target-speaker SPEAKER_01 \
+    --vad-threshold 0.40 \
+    --vad-min-speech-ms 100 \
+    --vad-min-silence-ms 200 \
+    --vad-padding-ms 150
+```
+
+### Run all applicable stages
+
+```bash
+python main.py \
+    --file call.wav \
+    --language hi \
+    --stage all \
+    --save-audio
+```
+
+---
+
+# 6. Evaluation Data
+
+Experiments were performed using individual audios from:
+
+- **MUCS**
+- **Lahaja**
+- **Gramvaani**
+
+A separate overlap experiment used **three Hindi recordings from Kathbath**, which were combined into one mono recording.
+
+The three Kathbath utterances were:
+
+```text
+उसको छोड़कर लोग इस प्रकार के मुद्दो पर चर्चा कर रहे है
+
+उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है
+
+चीन में मोबाइल फोन की लत एक युवती को बड़ी मुश्किल में डाल गई
+```
+
+Combined reference:
+
+```text
+चीन में मोबाइल फोन की लत एक युवती को बड़ी मुश्किल में डाल गई उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है उसको छोड़कर लोग इस प्रकार के मुद्दो पर चर्चा कर रहे है
+```
+
+---
+
+# 7. Mono Audio Evaluation
+
+## Mono Audio 1
+
+```text
+Duration: 9.51 s
+Input: 8 kHz
+Processed at: 16 kHz
+
+VAD:
+threshold = 0.40
+minimum speech = 80 ms
+minimum silence = 120 ms
+padding = 100 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.3913 | 0.2281 | 0.1795 | 9.513 s |
+| VAD | 0.3913 | 0.2544 | 0.1416 | 9.012 s |
+
+VAD detected **5 speech segments**.
+
+**Observation:** WER remained unchanged, CER increased, and RTF decreased.
+
+---
+
+## Mono Audio 2
+
+```text
+Duration: 11.64 s
+Input: 16 kHz
+
+VAD:
+threshold = 0.40
+minimum speech = 80 ms
+minimum silence = 120 ms
+padding = 100 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.7200 | 0.2569 | 0.1783 | 11.643 s |
+| VAD | 0.7200 | 0.2569 | 0.1456 | 11.336 s |
+
+VAD detected **1 speech segment**.
+
+**Observation:** WER and CER remained unchanged, while RTF decreased.
+
+### Mono Summary
+
+| Metric | Observation |
+|---|---|
+| WER | Unchanged in both tests |
+| CER | Unchanged in one test; increased in one |
+| RTF | Lower with VAD in both tests |
+| Overall | VAD reduced processing cost but did not consistently improve ASR accuracy |
+
+---
+
+# 8. Long-Form Audio Evaluation
+
+A **413-second Hindi recording** was evaluated with multiple VAD settings.
+
+### Run 1
+
+```text
+threshold = 0.40
+minimum speech = 80 ms
+minimum silence = 120 ms
+padding = 100 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.4094 | 0.3147 | 0.1505 | 413.000 s |
+| VAD | 0.4573 | 0.3490 | 0.1644 | 328.488 s |
+
+VAD detected **169 speech segments**.
+
+Change relative to raw:
+
+```text
+WER : +0.0479 absolute
+CER : +0.0343 absolute
+RTF : increased
+```
+
+---
+
+### Run 2
+
+```text
+threshold = 0.30
+minimum speech = 100 ms
+minimum silence = 300 ms
+padding = 200 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.4094 | 0.3147 | 0.1502 | 413.000 s |
+| VAD | 0.4272 | 0.2992 | 0.1661 | 356.464 s |
+
+VAD detected **116 speech segments**.
+
+Change relative to raw:
+
+```text
+WER : +0.0178 absolute
+CER : -0.0155 absolute
+RTF : increased
+```
+
+---
+
+### Run 3
+
+```text
+threshold = 0.25
+minimum speech = 150 ms
+minimum silence = 400 ms
+padding = 250 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.4094 | 0.3147 | 0.1564 | 413.000 s |
+| VAD | 0.4657 | 0.3419 | 0.1493 | 342.892 s |
+
+VAD detected **146 speech segments**.
+
+Change relative to raw:
+
+```text
+WER : +0.0563 absolute
+CER : +0.0272 absolute
+RTF : slightly decreased
+```
+
+### Long-Form Summary
+
+| VAD Configuration | WER Effect | CER Effect | RTF Effect |
+|---|---|---|---|
+| `0.40 / 80 / 120 / 100` | Worse | Worse | Worse |
+| `0.30 / 100 / 300 / 200` | Worse | Better | Worse |
+| `0.25 / 150 / 400 / 250` | Worse | Worse | Better |
+
+Format:
+
+```text
+threshold / min-speech / min-silence / padding
+```
+
+**Finding:** VAD is highly parameter-sensitive. No tested configuration improved WER, CER, and RTF simultaneously on this long-form recording.
+
+---
+
+# 9. Combined Kathbath Overlap Evaluation
+
+Three Hindi Kathbath recordings were combined and overlapped.
+
+```text
+Duration: 9.60 s
+Channels: 1
+Language: Hindi
+
+VAD:
+threshold = 0.40
+minimum speech = 100 ms
+minimum silence = 200 ms
+padding = 150 ms
+```
+
+| Stage | WER | CER | RTF | Processed Duration |
+|---|---:|---:|---:|---:|
+| Raw | 0.4444 | 0.3757 | 0.2064 | 9.600 s |
+| VAD | 0.4444 | 0.3757 | 0.1968 | 8.780 s |
+| Diarization | 0.4444 | 0.3757 | 0.2048 | 8.454 s |
+| Diarization + VAD | 0.4444 | 0.3757 | 0.1672 | 8.454 s |
+
+### Observation
+
+For this overlap experiment:
+
+- WER remained **0.4444** across all stages.
+- CER remained **0.3757**.
+- VAD reduced processed audio from **9.60 s to 8.78 s**.
+- Diarization reduced processed audio to **8.454 s**.
+- Diarization + VAD achieved the lowest RTF.
+
+Thus, the front-end reduced processing cost but did not change recognition accuracy for this particular overlap example.
+
+---
+
+# 10. Overall Technique Comparison
+
+| Technique | WER Effect | Latency / RTF | Production Role |
+|---|---|---|---|
+| Raw Whisper | Baseline | Baseline | Always useful as reference/fallback |
+| Channel separation | Not measured on the supplied mono tests | Very low cost | Use when stereo channel mapping is known |
+| Silero VAD | Mixed; unchanged on some tests, worse on long-form tests | Can reduce processed audio; effect depends on settings | Use only after tuning on representative calls |
+| Diarization | No WER/CER change in combined test | Slight RTF improvement in combined test | Useful for genuine mono multi-speaker calls |
+| Diarization + VAD | No WER/CER change in combined test | Lowest RTF in combined test | Good candidate for multi-speaker audio after validation |
+| DeepFilterNet | Not evaluated in final pipeline | Not evaluated | Removed from current implementation |
+
+---
+
+# 11. Production Pipeline
+
+### Fixed stereo channel mapping
+
+```text
+Stereo Audio
+     ↓
+Select customer channel
+     ↓
+Optional VAD
+     ↓
+Whisper
+```
+
+### Mono multi-speaker call
+
+```text
+Mono Audio
+     ↓
+Diarization
+     ↓
+Target Speaker
+     ↓
+Optional VAD
+     ↓
+Whisper
+```
+
+### Clean single-speaker audio
+
+```text
+Audio
+  ↓
+Whisper
+```
+
+The production pipeline should therefore enable preprocessing **based on the input type** rather than always running every stage.
+
+---
+
+# 12. Key Findings
+
+1. **Channel separation** is computationally cheap and is useful when the telephony system provides a fixed customer/agent channel mapping.
+
+2. **VAD reduces the amount of audio processed**, but the experiments show that this does not automatically reduce WER. VAD parameters need to be tuned on representative data.
+
+3. **Short utterances require special attention.** Responses such as `हाँ`, `जी`, and `नहीं` should be included when selecting VAD parameters.
+
+4. **Diarization is useful when speaker isolation is required**, particularly for mono recordings containing multiple speakers.
+
+5. In the **combined Kathbath overlap experiment**, diarization + VAD achieved the lowest RTF while WER/CER remained unchanged.
+
+---
+
+# 13. Output
+
+With `--save-audio`:
+
+```text
+speaker_whisper_results/
+├── experiment_results.json
+└── processed_audio/
+    ├── call__raw.wav
+    ├── call__vad.wav
+    ├── call__diarization.wav
+    └── call__diarization_vad.wav
+```
+
+The saved files allow direct inspection of the exact audio passed to Whisper for each stage.
+
+
+
+
