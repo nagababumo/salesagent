@@ -1,0 +1,32 @@
+File,Duration (s),Inference Time (s),VAD Speech Segments,Last Speech End (s),Trailing Silence (s),Turn Finished? (Silero),STT Avg LogProb,STT Unsure Flag,Audio Events (YAMNet),Transcript
+PC.m4a,6.93,7.97,1,5.82,1.11,YES,-0.119,NO,"Speech
+ (0.77), Noise
+ (0.04), White noise
+ (0.03)",मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा
+kb1.m4a,8.77,2.67,1,7.07,1.7,YES,-0.184,NO,"Speech
+ (0.60), Water
+ (0.07), Vehicle
+ (0.06)",मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपिये से पेमेंट कर दीदी।
+LICS.m4a,9.32,2.15,2,7.68,1.64,YES,-0.178,NO,"Speech
+ (0.82), White noise
+ (0.04), Inside (0.03)","मेरा refund process start हुआ है नहीं, status अभी टेक पेंडिंग दिका रहा है"
+PE.m4a,10.07,2.33,1,8.38,1.69,YES,-0.108,NO,"Speech
+ (0.80), Pink noise
+ (0.05), Noise
+ (0.04)",आहा आप लोग मेरा कॉल दो बार कट कर चुका हो मैनेजर से बाट बोलो
+nbdid.m4a,8.81,1.56,1,6.72,2.09,YES,-0.302,NO,"Speech
+ (0.71), Rustle
+ (0.04), Wind
+ (0.03)","हाँ, order id है 984450"
+EOT.m4a,10.22,1.74,2,8.64,1.58,YES,-0.232,NO,"Speech
+ (0.57), Rustle
+ (0.16), Pink noise
+ (0.15)",मेरा एकॉंट नमबर है 492810
+DMF.m4a,9.64,2.18,1,8.03,1.61,YES,-0.128,NO,"Speech
+ (0.83), Pink noise
+ (0.05), Rustle
+ (0.04)",मैने 25 सेटेंबर 2026 को 3500 रूपीज सेंट किया टी
+OOVB.m4a,9.17,2.21,1,6.49,2.68,YES,-0.143,NO,"Speech
+ (0.72), Rustle
+ (0.10), Pink noise
+ (0.08)",मेरा सर्चेक्स कॉर्ड का कैसबेक क्लेव रिसेक्ट हो गई है।

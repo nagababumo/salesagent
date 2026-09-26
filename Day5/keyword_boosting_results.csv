@@ -1,0 +1,25 @@
+File,Config,Inference Time (s),Detected Keywords Count,Detected Keywords,Transcript
+PC.m4a,1. Baseline (No Boost),1.28,0,,मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा
+PC.m4a,2. Hotwords Enabled,1.22,0,,मेरा काटबुक पर बाही कटा सिंक नहीं हो रहा
+PC.m4a,3. Initial Prompt,1.27,0,,मेरा काटबुक पर बाही कटा सिंक नहीं हो रहा।
+kb1.m4a,1. Baseline (No Boost),1.71,0,,मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपिये से पेमेंट कर दीदी।
+kb1.m4a,2. Hotwords Enabled,1.59,0,,मेरी स्रावनित प्लान एक्व नहीं हुआ है रुपिये से पेमेंट कर दीदी
+kb1.m4a,3. Initial Prompt,1.76,0,,मेरी स्रावनित्व प्लान एक्व नहीं हुआ है। रुपिये से पेमेंट कर दीदी।
+LICS.m4a,1. Baseline (No Boost),1.3,1,refund process,"मेरा refund process start हुआ है नहीं, status अभी टेक पेंडिंग दिका रहा है"
+LICS.m4a,2. Hotwords Enabled,1.48,1,refund process,मेरा refund process स्टार्ट हुआ है नहीं status अभी टेक पेंडिंग दिखा रहा है
+LICS.m4a,3. Initial Prompt,1.57,1,refund process,मेरा refund process स्टार्ट हुआ है नहीं। status अभी टेक पेंडिंग दिखा रहा है।
+PE.m4a,1. Baseline (No Boost),1.47,0,,आहा आप लोग मेरा कॉल दो बार कट कर चुका हो मैनेजर से बाट बोलो
+PE.m4a,2. Hotwords Enabled,1.56,0,,आहा आप लोग मेरा कॉल दो बार कट कर चुका हो मैनेजर से बात बोलो
+PE.m4a,3. Initial Prompt,1.68,0,,"आहा, आप लोग मेरा कॉल दो बार कट कर चुका हो, मैंने जब से बात बोलो।"
+nbdid.m4a,1. Baseline (No Boost),0.72,1,984450,"हाँ, order id है 984450"
+nbdid.m4a,2. Hotwords Enabled,0.69,1,984450,हाँ order id है 984450
+nbdid.m4a,3. Initial Prompt,0.86,1,984450,"हाँ, order id है 984450"
+EOT.m4a,1. Baseline (No Boost),0.87,1,492810,मेरा एकॉंट नमबर है 492810
+EOT.m4a,2. Hotwords Enabled,0.89,1,492810,मेरा एकोंट नमबर है 492810
+EOT.m4a,3. Initial Prompt,0.94,1,492810,मेरा एक्कॉंट नंबर है 492810
+DMF.m4a,1. Baseline (No Boost),1.14,0,,मैने 25 सेटेंबर 2026 को 3500 रूपीज सेंट किया टी
+DMF.m4a,2. Hotwords Enabled,1.09,1,25th September 2026,मैंने 25th September 2026 को 3500 रूपीज सेंड किया टी
+DMF.m4a,3. Initial Prompt,1.25,0,,मैंने 25 सेटेंबर 2026 को 3500 रूपीज सेंड किया टी।
+OOVB.m4a,1. Baseline (No Boost),1.37,0,,मेरा सर्चेक्स कॉर्ड का कैसबेक क्लेव रिसेक्ट हो गई है।
+OOVB.m4a,2. Hotwords Enabled,1.27,1,cashback claim,मेरा सरचेक्स कॉर्ड का cashback claim रिसेक्ट हो गई है
+OOVB.m4a,3. Initial Prompt,1.5,0,,मेरा सर्चिक्स कॉर्ड का कैस बैक क्लेव रिसेक्ट हो गई है।

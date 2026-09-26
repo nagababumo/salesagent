@@ -1,0 +1,144 @@
+844424930612535-939-f.m4a  उसको छोड़कर लोग इस प्रकार के मुद्दो पर चर्चा कर रहे है
+844424930869370-252-f.m4a  उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है
+844424931201045-939-f.m4a  चीन में मोबाइल फोन की लत एक युवती को बड़ी मुश्किल में डाल गई
+
+i have taken audios from kathbath and combined and overlapped .
+
+"चीन में मोबाइल फोन की लत एक युवती को बड़ी मुश्किल में डाल गई उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है उसको छोड़कर लोग इस प्रकार के मुद्दो पर चर्चा कर रहे है "
+
+
+!python main.py \
+    --file /combinedaudio457035.wav \
+    --language hi \
+    --stage all \
+    --reference "चीन में मोबाइल फोन की लत एक युवती को बड़ी मुश्किल में डाल गई उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है उसको छोड़कर लोग इस प्रकार के मुद्दो पर चर्चा कर रहे है "\
+--vad-threshold 0.40 \
+    --vad-min-speech-ms 100 \
+    --vad-min-silence-ms 200 \
+    --vad-padding-ms 150 \
+    --save-audio
+
+
+
+[INPUT]
+File       : /combinedaudio457035.wav
+Sample rate: 16000
+Channels   : 1
+Duration   : 9.60s
+[WHISPER] Loading openai/whisper-large-v3-turbo
+[WHISPER] Device: cuda:0
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights: 100% 587/587 [00:00<00:00, 5537.40it/s]
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[WHISPER] Ready
+[VAD] Loading Silero VAD...
+[VAD] Ready
+
+======================================================================
+STAGE: raw
+======================================================================
+[transformers] Using `chunk_length_s` is very experimental with seq2seq models. The results will not necessarily be entirely accurate and will have caveats. More information: https://github.com/huggingface/transformers/pull/20104. Ignore this warning with pipeline(..., ignore_warning=True). To use Whisper for long-form transcription, use rather the model's `generate` method directly as the model relies on it's own chunking mechanism (cf. Whisper original paper, section 3.8. Long-form Transcription).
+[transformers] Passing `generation_config` together with generation-related arguments=({'suppress_tokens', 'begin_suppress_tokens'}) is deprecated and will be removed in future versions. Please pass either a `generation_config` object OR all generation parameters explicitly, but not both.
+[transformers] Ignoring clean_up_tokenization_spaces=True for BPE tokenizer WhisperTokenizer. The clean_up_tokenization post-processing step is designed for WordPiece tokenizers and is destructive for BPE (it strips spaces before punctuation). Set clean_up_tokenization_spaces=False to suppress this warning, or set clean_up_tokenization_spaces_for_bpe_even_though_it_will_corrupt_output=True to force cleanup anyway.
+Hypothesis: चीन में मुबाइल फोन की लत एक युवदी को बड़ी मुश्किल में डाले उसको छोड़कर लोग इस प्रकार के मुद्धों पर चर्चा कर रहे हैं
+WER: 0.4444
+CER: 0.3757
+Processed duration: 9.600s
+Preprocessing time: 0.000s
+Whisper time: 1.981s
+Total RTF: 0.2064
+
+======================================================================
+STAGE: right_channel
+======================================================================
+[SKIP] Right-channel experiment requires stereo audio.
+
+======================================================================
+STAGE: vad
+======================================================================
+[transformers] Using `chunk_length_s` is very experimental with seq2seq models. The results will not necessarily be entirely accurate and will have caveats. More information: https://github.com/huggingface/transformers/pull/20104. Ignore this warning with pipeline(..., ignore_warning=True). To use Whisper for long-form transcription, use rather the model's `generate` method directly as the model relies on it's own chunking mechanism (cf. Whisper original paper, section 3.8. Long-form Transcription).
+Hypothesis: चीन में मुबाइल फोन की लत एक युवदी को बड़ी मुश्किल में डाले। उसको छोड़कर लोग इस प्रकार के मुद्दों पर चर्चा कर रहे हैं।
+WER: 0.4444
+CER: 0.3757
+Processed duration: 8.780s
+Preprocessing time: 0.277s
+Whisper time: 1.612s
+Total RTF: 0.1968
+VAD segments: 1
+VAD speech: 8.780s
+
+======================================================================
+STAGE: right_channel_vad
+======================================================================
+[SKIP] Right-channel experiment requires stereo audio.
+
+======================================================================
+STAGE: diarization
+======================================================================
+/usr/local/lib/python3.13/dist-packages/pyannote/audio/utils/reproducibility.py:74: ReproducibilityWarning: TensorFloat-32 (TF32) has been disabled as it might lead to reproducibility issues and lower accuracy.
+It can be re-enabled by calling
+   >>> import torch
+   >>> torch.backends.cuda.matmul.allow_tf32 = True
+   >>> torch.backends.cudnn.allow_tf32 = True
+See https://github.com/pyannote/pyannote-audio/issues/1370 for more details.
+
+  warnings.warn(
+/usr/local/lib/python3.13/dist-packages/pyannote/audio/models/blocks/pooling.py:103: UserWarning: std(): degrees of freedom is <= 0. Correction should be strictly less than the reduction factor (input numel divided by output numel). (Triggered internally at /pytorch/aten/src/ATen/native/ReduceOps.cpp:1858.)
+  std = sequences.std(dim=-1, correction=1)
+[transformers] Using `chunk_length_s` is very experimental with seq2seq models. The results will not necessarily be entirely accurate and will have caveats. More information: https://github.com/huggingface/transformers/pull/20104. Ignore this warning with pipeline(..., ignore_warning=True). To use Whisper for long-form transcription, use rather the model's `generate` method directly as the model relies on it's own chunking mechanism (cf. Whisper original paper, section 3.8. Long-form Transcription).
+Hypothesis: चीन में मुबाइल फोन की लत एक युवदी को बड़ी मुश्किल में डाले। उसको छोड़कर लोग इस प्रकार के मुद्दों पर चर्चा कर रहे हैं।
+WER: 0.4444
+CER: 0.3757
+Processed duration: 8.454s
+Preprocessing time: 0.506s
+Whisper time: 1.461s
+Total RTF: 0.2048
+Selected speaker: SPEAKER_00
+Speaker durations: {"SPEAKER_00": 8.454375}
+
+======================================================================
+STAGE: diarization_vad
+======================================================================
+[transformers] Using `chunk_length_s` is very experimental with seq2seq models. The results will not necessarily be entirely accurate and will have caveats. More information: https://github.com/huggingface/transformers/pull/20104. Ignore this warning with pipeline(..., ignore_warning=True). To use Whisper for long-form transcription, use rather the model's `generate` method directly as the model relies on it's own chunking mechanism (cf. Whisper original paper, section 3.8. Long-form Transcription).
+Hypothesis: चीन में मुबाइल फोन की लत एक युवदी को बड़ी मुश्किल में डाले। उसको छोड़कर लोग इस प्रकार के मुद्दों पर चर्चा कर रहे हैं।
+WER: 0.4444
+CER: 0.3757
+Processed duration: 8.454s
+Preprocessing time: 0.252s
+Whisper time: 1.353s
+Total RTF: 0.1672
+Selected speaker: SPEAKER_00
+Speaker durations: {"SPEAKER_00": 8.454375}
+VAD segments: 1
+VAD speech: 8.454s
+
+
+================================================================================
+EXPERIMENT SUMMARY
+================================================================================
+Stage                           WER       CER       RTF
+-------------------------------------------------------
+raw                          0.4444    0.3757    0.2064
+vad                          0.4444    0.3757    0.1968
+diarization                  0.4444    0.3757    0.2048
+diarization_vad              0.4444    0.3757    0.1672
+
+Saved:
+speaker_whisper_results/experiment_results.json
+
+
+--vad-threshold 0.30 \
+    --vad-min-speech-ms 150 \
+    --vad-min-silence-ms 300 \
+    --vad-padding-ms 250 \
+
+
+    ================================================================================
+EXPERIMENT SUMMARY
+================================================================================
+Stage                           WER       CER       RTF
+-------------------------------------------------------
+raw                          0.4444    0.3757    0.2058
+vad                          0.4444    0.3699    0.2009
+diarization                  0.4444    0.3757    0.1950
+diarization_vad              0.4444    0.3757    0.1639

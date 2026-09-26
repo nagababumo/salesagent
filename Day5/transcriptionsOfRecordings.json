@@ -1,0 +1,77 @@
+{
+  "test_cases": [
+    {
+      "sample_id": "sample_1_keyword",
+      "case_name": "Keyword Boosting (Brand & Terms)",
+      "target_layer": "Keyword Boosting / Contextual Biasing",
+      "script_reference": "मेरा SraVaani Pro plan active नहीं हुआ है, UPI से payment कर दी थी।",
+      "boost_keywords": ["SraVaani Pro", "UPI"],
+      "itn_expected": "मेरा SraVaani Pro plan active नहीं हुआ है, UPI से payment कर दी थी।",
+      "acoustic_friction_note": "Tests if the model mishears SraVaani as 'Sir Vani' or 'Sravani'."
+    },
+    {
+      "sample_id": "sample_2_context",
+      "case_name": "Context Prompting (Numbers & IDs)",
+      "target_layer": "Prompting / Context",
+      "script_reference": "हाँ order ID है nine eight double four five zero.",
+      "boost_keywords": ["984450", "order ID"],
+      "itn_expected": "हाँ order ID है 984450.",
+      "acoustic_friction_note": "Tests whether context helps parse 'double four' into '44'."
+    },
+    {
+      "sample_id": "sample_3_hinglish",
+      "case_name": "Language ID & Code-Switching",
+      "target_layer": "Language ID per segment",
+      "script_reference": "मेरा refund process start हुआ या नहीं? Status अभी तक pending दिखा रहा है।",
+      "boost_keywords": ["refund process", "pending"],
+      "itn_expected": "मेरा refund process start हुआ या नहीं? Status अभी तक pending दिखा रहा है।",
+      "acoustic_friction_note": "Evaluates code-switching routing across Hindi and English tokens."
+    },
+    {
+      "sample_id": "sample_4_itn",
+      "case_name": "ITN (Dates & Money)",
+      "target_layer": "Inverse Text Normalization (ITN)",
+      "script_reference": "मैंने 25th September 2026 को 3500 rupees send किए थे।",
+      "boost_keywords": ["25th September 2026", "3500 rupees"],
+      "itn_expected": "मैंने 25th September 2026 को ₹3500 send किए थे।",
+      "acoustic_friction_note": "Measures date and currency formatting from raw acoustic words."
+    },
+    {
+      "sample_id": "sample_5_emotion",
+      "case_name": "Paralinguistics & Emotion",
+      "target_layer": "Emotion & Paralinguistic Tags",
+      "script_reference": "Haha, आप लोग मेरा call दो बार cut कर चुके हो, manager से बात कराओ!",
+      "boost_keywords": ["manager"],
+      "itn_expected": "आप लोग मेरा call 2 बार cut कर चुके हो, manager से बात कराओ!",
+      "paralinguistic_tags": ["Laughter", "Angry"],
+      "acoustic_friction_note": "Evaluates speech decoding under laugh spikes and frustrated cadence."
+    },
+    {
+      "sample_id": "sample_6_hesitation",
+      "case_name": "End-of-Turn / Silence Test",
+      "target_layer": "Confidence Scores & End-of-Turn Signals",
+      "script_reference": "मेरा account number है... 492810.",
+      "boost_keywords": ["492810"],
+      "itn_expected": "मेरा account number है 492810.",
+      "acoustic_friction_note": "Tests if mid-utterance silence (2s pause) triggers premature VAD termination."
+    },
+    {
+      "sample_id": "sample_7_out_of_vocab",
+      "case_name": "Out-of-Vocabulary Brand",
+      "target_layer": "Keyword Boosting / Out-of-Vocabulary",
+      "script_reference": "मेरा SurgeX card का cashback claim reject हो गया है।",
+      "boost_keywords": ["SurgeX", "cashback claim"],
+      "itn_expected": "मेरा SurgeX card का cashback claim reject हो गया है।",
+      "acoustic_friction_note": "Tests OOV term 'SurgeX' against common word fallbacks like 'Surgical' or 'Search Ex'."
+    },
+    {
+      "sample_id": "sample_8_phonetic",
+      "case_name": "Phonetic Ambiguity",
+      "target_layer": "Keyword Boosting / Acoustic Confusion",
+      "script_reference": "मेरा Khatabook पर bahi-khata sync नहीं हो रहा।",
+      "boost_keywords": ["Khatabook", "bahi-khata"],
+      "itn_expected": "मेरा Khatabook पर bahi-khata sync नहीं हो रहा।",
+      "acoustic_friction_note": "Tests Hindi homophones framed by English context ('buy khata' vs 'bahi-khata')."
+    }
+  ]
+}
