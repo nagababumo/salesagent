@@ -1,0 +1,9 @@
+File,Bot Context / Question,1. Raw Baseline (No Context),2. Whisper + Context Prompt,3. Whisper + Gemini LLM Post-Corrected,Inference Time (s)
+PC.m4a,What is your query?,मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा,मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा।,मेरा खाता बुक पर बही खाता सिंक नहीं हो रहा।,4.2
+kb1.m4a,What is your query?,मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपिये से पेमेंट कर दीदी।,मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपिये से पेमेंट कर दी दी।,मेरी सबस्क्रिप्शन प्लान एक्टिव नहीं हुआ है। रुपये से पेमेंट कर दी है।,5.42
+LICS.m4a,How can I help you with your transaction status today?,"मेरा refund process start हुआ है नहीं, status अभी टेक पेंडिंग दिका रहा है",मेरा refund process स्टार्ट हुआ है नहीं status अभी टेक पेंडिंग दिखा रहा है,"मेरा रिफंड प्रोसेस स्टार्ट हुआ है या नहीं, स्टेटस अभी तक पेंडिंग दिखा रहा है।",4.2
+PE.m4a,What is your query?,आहा आप लोग मेरा कॉल दो बार कट कर चुका हो मैनेजर से बाट बोलो,"आहा, आप लोग मेरा कॉल दो बार कट कर चुका हो। मैनेजर से बात बोलो।",आप लोग मेरा कॉल दो बार कट कर चुके हो। मैनेजर से बात कराओ।,4.23
+nbdid.m4a,Can you provide your 6-digit Order ID?,"हाँ, order id है 984450","हाँ, Order ID है 984450","हाँ, Order ID है 984450",6.91
+EOT.m4a,Please confirm your account number.,मेरा एकॉंट नमबर है 492810,मेरा एकॉंट नंबर है 492810,मेरा अकाउंट नंबर है 492810,10.68
+DMF.m4a,Please tell me the date and the amount you transferred.,मैने 25 सेटेंबर 2026 को 3500 रूपीज सेंट किया टी,मैंने 25 सेटेंबर 2026 को 3500 रूपीस सेंड किया टी,मैंने 25 सितंबर 2026 को 3500 रुपये सेंड किए।,3.83
+OOVB.m4a,What issue are you facing with your cashback or refund?,मेरा सर्चेक्स कॉर्ड का कैसबेक क्लेव रिसेक्ट हो गई है।,मेरा सर्चिक्स कॉर्ड का कैस बैक क्लेव रिसेक्ट हो गई है।,मेरा सर्विस कार्ड का कैशबैक क्लेम रिजेक्ट हो गया है।,4.08

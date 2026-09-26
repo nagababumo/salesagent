@@ -1156,3 +1156,215 @@ Quantization substantially reduced the model footprint and improved inference sp
 The main engineering outcome is the measurement methodology: accuracy and systems metrics were evaluated together rather than assuming that lower-bit quantization is automatically free. The next validation step is to repeat the same benchmark on a dedicated 4-vCPU / 8–16 GB RAM machine and add a valid concurrency test.
 
 
+
+
+# Day 5 — Adding more intelligence 
+
+## Objective
+
+Day 5 focused on improving **Hindi/Hinglish call transcription** and building a ASR -> LLM pipeline.
+
+- Faster-Whisper
+- Hotword/domain vocabulary boosting
+- Context prompting
+- NeMo ITN/TN experiments
+- Whisper confidence
+- YAMNet audio events
+- Silero VAD
+- Gemini transcript correction
+- LLM-based intent and entity extraction
+
+---
+
+## 1. Faster-Whisper Baseline
+
+**What we tried:** `Faster-Whisper large-v3` with CUDA/float16 and beam size 5.
+
+```mermaid
+flowchart LR
+    A[Audio Clips] --> B[Audio Loading]
+    B --> C[Faster-Whisper large-v3]
+    C --> D[Language Detection]
+    C --> E[Transcript]
+    C --> F[Confidence / Timing]
+    D --> G[Results CSV]
+    E --> G
+    F --> G
+```
+
+**Result:** Established the main ASR baseline for all 8 audio clips.
+
+---
+
+## 2. Hotwords vs Initial Prompt
+
+**What we tried:** Compare normal Whisper decoding, `hotwords`, and `initial_prompt` using domain vocabulary.
+
+```mermaid
+flowchart LR
+    A[Audio] --> B[Faster-Whisper]
+
+    V[Domain Vocabulary] --> C[Hotwords]
+    Q[Bot Context] --> D[Initial Prompt]
+
+    B --> E[Baseline Transcript]
+    C --> F[Hotword Transcript]
+    D --> G[Prompt Transcript]
+
+    E --> H[Keyword Comparison]
+    F --> H
+    G --> H
+```
+
+**Result:** Hotwords increased observed target-phrase matches from **3 → 5** across the eight clips.
+
+---
+
+## 3. NeMo Language Filtering + ITN/TN
+
+**What we tried:** Language filtering plus NeMo inverse text normalization and text normalization.
+
+```mermaid
+flowchart LR
+    A[Whisper Transcript] --> B[Language Filter]
+    B --> C[NeMo ITN]
+    B --> D[NeMo TN]
+    C --> E[Normalized Text]
+    D --> F[Normalized Text]
+```
+
+**Result:** No segments were filtered; ITN showed no demonstrated improvement, while TN sometimes converted IDs/numbers into spoken words.
+
+---
+
+## 4. Confidence + YAMNet + Endpoint Detection
+
+```mermaid
+flowchart LR
+    A[Audio] --> B[Faster-Whisper]
+    A --> C[YAMNet]
+    B --> D[Log Probability]
+    B --> E[No-Speech Probability]
+    B --> F[Whisper Timestamp]
+    D --> G[Confidence Flag]
+    E --> G
+    F --> H[Turn Finished]
+    C --> I[Audio Event Tags]
+```
+
+**Result:** All eight clips were marked confident and finished. YAMNet mostly returned speech/noise-related labels.
+
+---
+
+## 5. Silero VAD Endpointing
+
+```mermaid
+flowchart LR
+    A[Audio] --> B[Silero VAD]
+    B --> C[Speech Chunks]
+    C --> D[Speech End]
+    D --> E[Trailing Silence]
+    E --> F[Turn Finished?]
+
+    G[Faster-Whisper] --> H[ASR Confidence]
+    A --> G
+```
+
+**Result:** Silero produced 1–2 speech chunks per clip and gave the same final turn-finished decision as the Whisper-tail method.
+
+---
+
+# 6. Whisper + Bot Context + Gemini Correction
+
+```mermaid
+flowchart LR
+    A[Audio] --> B[Faster-Whisper]
+    C[Previous Bot Question] --> B
+    B --> D[Context-Aware Transcript]
+    D --> E[Gemini]
+    E --> F[Clean Hinglish Transcript]
+```
+
+**Result:** Gemini often corrected phonetic spellings, amounts, dates, and domain terms, but some corrections could be guessed incorrectly.
+
+---
+
+# 7. Hotwords + Context + Gemini
+
+```mermaid
+flowchart LR
+    A[Audio] --> B[Faster-Whisper]
+
+    V[Domain Hotwords] --> B
+    Q[Bot Question / Context] --> B
+
+    B --> C[Boosted Transcript]
+    C --> D[Gemini]
+    D --> E[Corrected Transcript]
+    E --> F[Voicebot Processing]
+```
+
+**Result:** Improved several domain terms and slots, but prompt contamination/echo was observed in some examples.
+
+---
+
+# 8. Final Comprehensive Voicebot Pipeline
+
+```mermaid
+flowchart LR
+    A[User Audio] --> B[Silero VAD]
+    B --> C[Faster-Whisper]
+
+    D[Domain Hotwords] --> C
+    E[Bot Context] --> C
+
+    C --> F[Raw Transcript]
+    C --> G[Confidence]
+
+    A --> H[YAMNet]
+    H --> I[Audio Events]
+
+    F --> J[Gemini]
+    G --> J
+    E --> J
+    I --> J
+
+    J --> K[Clean Transcript]
+    J --> L[Intent]
+    J --> M[Entities]
+    J --> N[Confirmation Flag]
+
+    K --> O[Voicebot / Application]
+    L --> O
+    M --> O
+    N --> O
+```
+
+**Result:** The integrated pipeline produced transcript, intent, entity fields, confidence, turn-end, and confirmation outputs for all eight clips.
+
+---
+
+## Day 5 Outcome
+
+```mermaid
+flowchart LR
+    A[Faster-Whisper] --> B[Hotwords]
+    B --> C[Context]
+    C --> D[VAD + Confidence]
+    D --> E[Gemini]
+    E --> F[Structured Voicebot Output]
+```
+
+### Main Findings
+
+| Experiment | Outcome |
+|---|---|
+| Faster-Whisper | Baseline established |
+| Hotwords | Useful domain vocabulary improvement |
+| Initial Prompt | No clear gain alone |
+| NeMo ITN/TN | Not suitable in current form |
+| Whisper Confidence | Useful signal, needs validation |
+| YAMNet | Optional audio-event information |
+| Silero VAD | Promising for endpointing |
+| Gemini Correction | Useful but needs safeguards |
+| ASR + LLM Pipeline | Good application prototype |

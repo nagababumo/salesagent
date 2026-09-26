@@ -1,0 +1,25 @@
+File,Duration (s),Trailing Silence (s),Turn Finished?,STT LogProb,STT Unsure Flag,Audio Events,Raw Transcript,Cleaned Transcript,Extracted Intent,Extracted Entities,Confirm Slot?,Inference Time (s)
+PC.m4a,6.93,1.11,YES,-0.2,NO,"Speech
+ (0.77), Noise
+ (0.04)",मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा।,मेरा Khatabook पर बही खाता सिंक नहीं हो रहा है।,account_inquiry,"{""amount"": null, ""order_id"": null, ""brand_or_product"": ""Khatabook""}",NO,50.39
+kb1.m4a,8.77,1.7,YES,-0.224,NO,"Speech
+ (0.60), Water
+ (0.07)",मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपये से पेमेंट कर दीदी।,मेरी SraVaani Pro प्लान एक्टिव नहीं हुआ है। UPI से पेमेंट कर दी है।,payment_status,"{""amount"": null, ""order_id"": null, ""brand_or_product"": ""SraVaani Pro""}",NO,5.91
+LICS.m4a,9.32,1.64,YES,-0.198,NO,"Speech
+ (0.82), White noise
+ (0.04)",मेरा refund process स्टार्ट हुआ है नहीं status अभी टेक पेंडिंग दिखा रहा है,"मेरा refund process स्टार्ट हुआ है या नहीं, status अभी पेंडिंग दिखा रहा है",refund_issue,"{""amount"": null, ""order_id"": null, ""brand_or_product"": null}",NO,3.84
+PE.m4a,10.07,1.69,YES,-0.186,NO,"Speech
+ (0.80), Pink noise
+ (0.05)","आहा, आप लोग मेरा कॉल दो बार कट कर चुका हो। मैनेजर से बात बोलो।",आप लोग मेरा कॉल दो बार कट कर चुके हो। मैनेजर से बात कराओ।,general_query,"{""amount"": null, ""order_id"": null, ""brand_or_product"": null}",NO,13.65
+nbdid.m4a,8.81,2.09,YES,-0.489,NO,"Speech
+ (0.71), Rustle
+ (0.04)","हाँ, Order ID है 984450",Order ID 984450 hai,account_inquiry,"{""amount"": null, ""order_id"": ""984450"", ""brand_or_product"": null}",NO,10.09
+EOT.m4a,10.22,1.58,YES,-0.324,NO,"Speech
+ (0.57), Rustle
+ (0.16)",मेरा एकॉंट नंबर है 492810,मेरा अकाउंट नंबर है 492810,account_inquiry,"{""amount"": null, ""order_id"": ""492810"", ""brand_or_product"": null}",NO,4.62
+DMF.m4a,9.64,1.61,YES,-0.262,NO,"Speech
+ (0.83), Pink noise
+ (0.05)",मैंने 25 सेटेंबर 2026 को 3500 रूपीस सेंड किया टी,मैंने 25 सितंबर 2026 को 3500 रुपये सेंड किए,payment_status,"{""amount"": ""3500"", ""order_id"": null, ""brand_or_product"": null}",NO,8.57
+OOVB.m4a,9.17,2.68,YES,-0.188,NO,"Speech
+ (0.72), Rustle
+ (0.10)",मेरा सर्चिक्स कॉर्ड का कैस बैक क्लेव रिसेक्ट हो गई है।,मेरा SurgeX कार्ड का कैशबैक क्लेम रिजेक्ट हो गया है।,refund_issue,"{""amount"": null, ""order_id"": null, ""brand_or_product"": ""SurgeX""}",NO,3.99

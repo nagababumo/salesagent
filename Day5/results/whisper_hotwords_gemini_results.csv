@@ -1,0 +1,9 @@
+File,Bot Context / Question,1. Raw Baseline,2. Whisper (Hotwords + Prompt),3. Final (Whisper + Gemini),Inference Time (s)
+PC.m4a,Are you having an issue with Khatabook sync?,मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा,मेरा काटा बुक पर बाही कटा सिंक नहीं हो रहा।,मेरा Khatabook पर bahi-khata सिंक नहीं हो रहा।,6.73
+kb1.m4a,Which plan activation failed?,मेरी स्रावनित्रों प्लान एको नहीं हुआ है। रुपिये से पेमेंट कर दीदी।,मेरी स्रावनिक प्रूप प्लान एक्व नहीं हुआ है। रुपिये से पेमेंट कर दी दी।,मेरी SraVaani Pro प्लान एक्टिवेट नहीं हुआ है। UPI से पेमेंट कर दी है।,7.35
+LICS.m4a,How can I help you with your transaction status today?,"मेरा refund process start हुआ है नहीं, status अभी टेक पेंडिंग दिका रहा है",मेरा refund process स्टार्ट हुआ है नहीं। status अभी टेक पेंडिंग दिखा रहा है।,मेरा refund process स्टार्ट हुआ है या नहीं? status अभी पेंडिंग दिखा रहा है।,15.78
+PE.m4a,Do you want to speak with a manager?,आहा आप लोग मेरा कॉल दो बार कट कर चुका हो मैनेजर से बाट बोलो,Aha! आप लोग मेरा कॉल दो बार कट कर चुका हो। Manager से बात बोलो।,"हाँ, आप लोगों ने मेरा कॉल दो बार कट कर दिया है। मैनेजर से बात करवाओ।",4.51
+nbdid.m4a,Can you provide your 6-digit Order ID?,"हाँ, order id है 984450",The user is responding to the query. Relevant terms are 984450.,984450,3.14
+EOT.m4a,Please confirm your account number.,मेरा एकॉंट नमबर है 492810,My account number is 492810.,492810,2.94
+DMF.m4a,Please tell me the date and the amount you transferred.,मैने 25 सेटेंबर 2026 को 3500 रूपीज सेंट किया टी,Mayne 25th September 2026 3500 rupees sent KRT.,Maine 25th September 2026 ko 3500 rupees transfer kiye.,3.32
+OOVB.m4a,What issue are you facing with your cashback or refund?,मेरा सर्चेक्स कॉर्ड का कैसबेक क्लेव रिसेक्ट हो गई है।,मेरा सर्चिक्स कॉर्ड का कैस बैक क्लेव रिसेक्ट हो गई है।,मेरा SurgeX कार्ड का cashback claim रिजेक्ट हो गई है।,4.22
