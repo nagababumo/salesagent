@@ -10,7 +10,7 @@ import numpy as np
 
 from audio_utils import save_wav, ensure_16k
 from config import MODEL_SR
-from metrics import calculate_metrics
+from metrics import calculate_metrics, calculate_script_metrics
 
 
 @dataclass
@@ -33,6 +33,11 @@ class ExperimentResult:
     selected_speaker: str | None
     speaker_durations: dict | None
     gpu_memory_mb: float | None
+    script_metrics: dict | None
+    device: str
+    threads: int | None
+    beam_size: str
+    vad_config: dict | None
 
 
 STAGE_CONFIG = {
@@ -147,6 +152,20 @@ class ExperimentRunner:
 
         total_time = prep_time + whisper_time
         wer_value, cer_value = calculate_metrics(reference, hypothesis)
+        script_metrics = calculate_script_metrics(reference, hypothesis)
+        vad_config = None
+        if cfg["vad"] and self.vad is not None:
+            vad_config = {
+                "threshold": self.vad.threshold,
+                "min_speech_duration_ms": self.vad.min_speech_duration_ms,
+                "min_silence_duration_ms": self.vad.min_silence_duration_ms,
+                "speech_pad_ms": self.vad.speech_pad_ms,
+            }
+        try:
+            import torch
+            threads = torch.get_num_threads()
+        except ImportError:
+            threads = None
 
         return ExperimentResult(
             stage=stage,
@@ -167,6 +186,11 @@ class ExperimentRunner:
             selected_speaker=selected_speaker,
             speaker_durations=speaker_durations,
             gpu_memory_mb=gpu_memory,
+            script_metrics=script_metrics,
+            device=getattr(self.whisper, "device", "unknown"),
+            threads=threads,
+            beam_size="model_default",
+            vad_config=vad_config,
         )
 
     def run(self, stages, audio, sample_rate, source_name, reference=None):

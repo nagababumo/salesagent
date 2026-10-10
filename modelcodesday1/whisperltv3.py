@@ -15,7 +15,9 @@ from evaluate_asr import (
     load_audio,
     make_telephony_audio,
     metric,
+    NORMALIZATION_POLICY,
     resample,
+    runtime_metadata,
     script_aware_metrics,
 )
 
@@ -77,7 +79,7 @@ def transcribe_audio(transcriber, audio, sample_rate, language):
 def run_evaluation(transcriber, model_id, model_sample_rate, examples, language, output_path):
     results = {
         "model_id": model_id,
-        "normalization": "casefold; remove ZWNJ/ZWJ; remove punctuation; collapse whitespace; remove number separators; preserve Devanagari vowel signs and scripts",
+        "normalization": NORMALIZATION_POLICY,
         "slices": {},
     }
     for slice_name in ("clean", "telephony", "code_mixed"):
@@ -99,7 +101,9 @@ def run_evaluation(transcriber, model_id, model_sample_rate, examples, language,
                 "hypothesis": hypothesis,
                 "duration_seconds": duration,
                 "rtf": elapsed / max(duration, 1e-9),
+                "inference_seconds": elapsed,
                 "peak_process_memory_mb": peak_memory,
+                **runtime_metadata("model_default"),
                 "metrics": metric(example.reference, hypothesis),
                 "script_aware": script_aware_metrics(example.reference, hypothesis),
             }

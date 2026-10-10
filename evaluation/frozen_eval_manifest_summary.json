@@ -1,0 +1,129 @@
+{
+  "manifest_version": "saleagent-stt-eval-v1",
+  "split_policy": "MUCS speaker/recording groups assigned train/dev/test; Gram Vaani recording groups disjoint but speaker IDs unavailable; test rows only; deterministic SHA-256 ordering",
+  "slice_summary": {
+    "clean_hindi": {
+      "utterance_count": 100,
+      "total_duration_seconds": 990.256,
+      "total_reference_words": 2691,
+      "sample_rates_hz": {
+        "8000": 55,
+        "44100": 38,
+        "48000": 4,
+        "16000": 3
+      },
+      "speaker_ids_known": 0,
+      "recording_groups": 100,
+      "reference_review_status": {
+        "dataset_reference_not_yet_human_audited": 100
+      }
+    },
+    "code_mixed_mucs": {
+      "utterance_count": 100,
+      "total_duration_seconds": 566.0,
+      "total_reference_words": 1068,
+      "sample_rates_hz": {
+        "16000": 100
+      },
+      "speaker_ids_known": 5,
+      "recording_groups": 5,
+      "reference_review_status": {
+        "dataset_reference_script_style_needs_human_audit": 100
+      }
+    },
+    "long_form_separate": {
+      "utterance_count": 1,
+      "total_duration_seconds": 413.0,
+      "total_reference_words": 989,
+      "sample_rates_hz": {
+        "16000": 1
+      },
+      "speaker_ids_known": 1,
+      "recording_groups": 1,
+      "reference_review_status": {
+        "repo_reference_not_yet_human_audited; verify_not_model_hypothesis": 1
+      }
+    },
+    "short_turn": {
+      "utterance_count": 50,
+      "total_duration_seconds": 180.911,
+      "total_reference_words": 322,
+      "sample_rates_hz": {
+        "8000": 26,
+        "44100": 22,
+        "48000": 2
+      },
+      "speaker_ids_known": 0,
+      "recording_groups": 50,
+      "reference_review_status": {
+        "dataset_reference_not_yet_human_audited": 50
+      }
+    },
+    "telephony_from_clean_hindi": {
+      "utterance_count": 100,
+      "total_duration_seconds": 990.256,
+      "total_reference_words": 2691,
+      "sample_rates_hz": {
+        "8000": 55,
+        "44100": 38,
+        "48000": 4,
+        "16000": 3
+      },
+      "speaker_ids_known": 0,
+      "recording_groups": 100,
+      "reference_review_status": {
+        "dataset_reference_not_yet_human_audited": 100
+      }
+    }
+  },
+  "selection_seed": "saleagent-stt-eval-v1",
+  "speaker_assignments_mucs": {
+    "103085": "test",
+    "103725": "train",
+    "118638": "dev",
+    "124478": "test",
+    "133511": "dev",
+    "137494": "train",
+    "146881": "train",
+    "161768": "train",
+    "270589": "dev",
+    "318923": "train",
+    "323507": "train",
+    "347099": "train",
+    "360746": "train",
+    "388577": "train",
+    "408467": "train",
+    "453832": "dev",
+    "478254": "test",
+    "508088": "train",
+    "521245": "train",
+    "598753": "train",
+    "610773": "train",
+    "628028": "dev",
+    "656144": "train",
+    "656852": "train",
+    "791308": "test",
+    "834022": "test",
+    "847066": "train",
+    "918821": "train",
+    "921151": "test",
+    "957491": "train"
+  },
+  "excluded_gv_quality_flags": [
+    "audio_break",
+    "audio_jump",
+    "inaudible"
+  ],
+  "short_turn_rule": "<=10 normalized reference words and <=8 seconds; 50 utterances",
+  "clean_rule": ">=15 normalized reference words, no Latin-script token, 3-30 seconds; 100 utterances",
+  "code_mixed_rule": "reference contains both Latin and Devanagari, 2-25 words, 1-20 seconds; 100 utterances from held-out MUCS speakers and recordings",
+  "telephony_rule": "one deterministic telephony degradation per clean Hindi utterance; same reference/audio identity",
+  "long_form_rule": "one 413-second recording, scored and reported separately; never pool into short-form slices",
+  "limitations": [
+    "Gram Vaani metadata contains no speaker IDs; clean/short-turn slices are recording-group-disjoint, but speaker-disjointness within GV cannot be independently proven. Do not use these GV evaluation recordings for training until speaker identities are obtained.",
+    "Dataset-provided references have not been manually checked against audio. The manifest records reference provenance and marks human audit as pending; particularly audit MUCS script choices and the concatenated long-form reference before publishing final scores.",
+    "MUCS 16 kHz segments are represented by source recording path plus start/end offsets; evaluation code must crop those intervals before inference.",
+    "The short-turn slice uses a <=10-word, <=8-second operational definition because the quality-filtered release has too few <=5-word samples to reach 50.",
+    "The telephony slice is a deterministic augmentation recipe, not copied audio; apply the named degradation and recorded seed at evaluation time."
+  ]
+}

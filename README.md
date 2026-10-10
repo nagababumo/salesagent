@@ -1,5 +1,13 @@
 # Day 1 — Indian-Language ASR Benchmark
 
+> **Round 1 results are historical only.** The measurement review identified
+> scoring, reference, and timing defects, and Whisper-family models are out of
+> scope for the new comparison. Do not cite the Day 1/Day 2 leaderboard or its
+> “best WER” conclusion as a corrected result. The replacement workflow and
+> frozen test set are documented in [evaluation/README.md](evaluation/README.md)
+> and [evaluation/ROUND2.md](evaluation/ROUND2.md). The six-model runner writes
+> the updated comparison table only after the new inference run completes.
+
 This project benchmarks open-source ASR models for Indian-language speech, with a focus on **Hindi, Hindi-English code-mixed speech, telephony audio, and long-form audio**.
 
 The Day 1 work covers:
@@ -182,7 +190,12 @@ before running the complete benchmark.
 
 ---
 
-# Run the Complete Benchmark
+# Round 1 Benchmark (Historical Only)
+
+The command below reproduces the original Round 1 experiment only. It includes
+Whisper, uses the small Round 1 corpus, and is **not** the Round 2 comparison.
+Keep its saved JSON under `modelbenchmark_day1/` as historical raw output; do
+not extend its leaderboard with new model results.
 
 The deliverable is one results table:
 
@@ -293,7 +306,12 @@ Normalization is applied consistently before scoring. Indic vowel signs are pres
 
 ---
 
-# Results
+# Results (Round 1 — Historical, Not Corrected)
+
+The table below records the old run for provenance only. Its references,
+normalization, device comparability, and batched latency were not all valid.
+Round 2 results must be produced from the frozen manifest and the replacement
+scorer; no corrected Round 2 scores are claimed here.
 
 Values below are aggregate metrics read from the JSON files in `modelbenchmark_day1/`.
 
@@ -374,7 +392,11 @@ Hardware, Python/PyTorch versions, model revisions, and runtime device can affec
 # Day 2 (Error Analysis)
 
 
-## Overall Comparison
+## Overall Comparison (Round 1 — Withdrawn)
+
+The old “SraVaani has the best WER” conclusion is withdrawn. Stripping danda
+changes the ranking, and old per-file/batched RTF values are not comparable.
+Use the Round 2 workflow below for any new conclusion.
 
 | Model | Avg WER | Avg CER | Avg RTF | Key Observation |
 |---|---:|---:|---:|---|

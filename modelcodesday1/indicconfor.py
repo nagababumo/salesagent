@@ -16,7 +16,9 @@ from evaluate_asr import (
     find_examples,
     make_telephony_audio,
     metric,
+    NORMALIZATION_POLICY,
     resample,
+    runtime_metadata,
     script_aware_metrics,
 )
 
@@ -128,7 +130,7 @@ def run_evaluation(model, model_id, examples, language, output_path, batch_size=
     results = {
         "model_id": model_id,
         "decoder": "IndicConformer direct CTC decoding",
-        "normalization": "casefold; remove ZWNJ/ZWJ; remove punctuation; collapse whitespace; remove number separators; preserve Devanagari vowel signs and scripts",
+        "normalization": NORMALIZATION_POLICY,
         "slices": {},
     }
 
@@ -160,14 +162,14 @@ def run_evaluation(model, model_id, examples, language, output_path, batch_size=
             slice_audios.append(audio)
 
         # Process slice in batches safely
-        for i in range(0, len(slice_audios), batch_size):
+        for batch_index, i in enumerate(range(0, len(slice_audios), batch_size)):
             batch_audios = slice_audios[i : i + batch_size]
             batch_examples = slice_examples[i : i + batch_size]
 
             hypotheses, elapsed, peak_memory = transcribe_batch(
                 model, batch_audios, language
             )
-            per_sample_elapsed = elapsed / len(batch_audios)
+            batch_id = f"{slice_name}-{batch_index:05d}"
 
             for example, audio, hypothesis in zip(batch_examples, batch_audios, hypotheses):
                 duration = len(audio) / MODEL_SAMPLE_RATE
@@ -176,7 +178,15 @@ def run_evaluation(model, model_id, examples, language, output_path, batch_size=
                     "reference": example.reference,
                     "hypothesis": hypothesis,
                     "duration_seconds": duration,
-                    "rtf": per_sample_elapsed / max(duration, 1e-9),
+                    "rtf": (
+                        elapsed / max(duration, 1e-9)
+                        if len(batch_audios) == 1 else None
+                    ),
+                    "inference_seconds": elapsed if len(batch_audios) == 1 else None,
+                    "batch_id": batch_id if len(batch_audios) > 1 else None,
+                    "batch_elapsed_seconds": elapsed if len(batch_audios) > 1 else None,
+                    "batch_duration_seconds": sum(len(item) / MODEL_SAMPLE_RATE for item in batch_audios),
+                    **runtime_metadata("model_default"),
                     "peak_process_memory_mb": peak_memory,
                     "metrics": metric(example.reference, hypothesis),
                     "script_aware": script_aware_metrics(example.reference, hypothesis),

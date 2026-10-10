@@ -16,7 +16,9 @@ from evaluate_asr import (
     load_audio,
     make_telephony_audio,
     metric,
+    NORMALIZATION_POLICY,
     resample,
+    runtime_metadata,
     script_aware_metrics,
 )
 
@@ -105,6 +107,7 @@ class NemotronTranscriber:
         language: str = DEFAULT_LANGUAGE,
         lookahead_tokens: int = DEFAULT_LOOKAHEAD_TOKENS,
         max_new_tokens: int = DEFAULT_MAX_NEW_TOKENS,
+        device: str | None = None,
     ) -> None:
 
         self.model_id = model_id
@@ -116,12 +119,10 @@ class NemotronTranscriber:
         # DEVICE
         # ---------------------------------------------------------
 
-        self.use_cuda = torch.cuda.is_available()
-
-        if self.use_cuda:
-            self.device = "cuda"
-        else:
-            self.device = "cpu"
+        self.device = device or ("cuda" if torch.cuda.is_available() else "cpu")
+        self.use_cuda = self.device.startswith("cuda")
+        if self.use_cuda and not torch.cuda.is_available():
+            raise RuntimeError("CUDA device requested but CUDA is unavailable.")
 
         print()
         print("=" * 70)
@@ -195,7 +196,7 @@ class NemotronTranscriber:
 
         self.model = AutoModelForRNNT.from_pretrained(
             self.model_id,
-            device_map="auto",
+            device_map=self.device,
         )
 
         self.model.eval()
@@ -423,10 +424,22 @@ class NemotronTranscriber:
                 - n_fft // 2
             )
 
-            # Once we've covered the original audio,
-            # stop after the padded final chunk.
             if end_idx >= audio_length:
                 break
+
+        # The cache-aware RNNT decoder must receive a terminal feature chunk
+        # after the last real/padded audio chunk to flush right-context tokens.
+        # Reusing a correctly shaped silent chunk provides that lookahead.
+        flush_audio = np.zeros(normal_chunk_samples, dtype=np.float32)
+        flush_inputs = self.processor(
+            flush_audio,
+            sampling_rate=self.sample_rate,
+            is_streaming=True,
+            is_first_audio_chunk=False,
+            language=self.language,
+            return_tensors="pt",
+        ).to(self.model.device, dtype=self.model.dtype)
+        yield flush_inputs.input_features
 
     @torch.inference_mode()
     def transcribe(
@@ -603,6 +616,19 @@ class NemotronTranscriber:
                 if end_idx >= audio_length:
                     break
 
+            # Explicit end-of-stream flush: the model needs right context to
+            # emit the final tokens after the last real or padded audio chunk.
+            flush_audio = np.zeros(normal_chunk_samples, dtype=np.float32)
+            flush_inputs = self.processor(
+                flush_audio,
+                sampling_rate=self.sample_rate,
+                is_streaming=True,
+                is_first_audio_chunk=False,
+                language=self.language,
+                return_tensors="pt",
+            ).to(self.model.device, dtype=self.model.dtype)
+            yield flush_inputs.input_features
+
         # ---------------------------------------------------------
         # GENERATE KWARGS
         # ---------------------------------------------------------
@@ -683,13 +709,7 @@ def run_evaluation(
             None,
         ),
         "max_new_tokens": transcriber.max_new_tokens,
-        "normalization": (
-            "casefold; remove ZWNJ/ZWJ; "
-            "remove punctuation; "
-            "collapse whitespace; "
-            "remove number separators; "
-            "preserve Devanagari vowel signs and scripts"
-        ),
+        "normalization": NORMALIZATION_POLICY,
         "slices": {},
     }
 
@@ -824,6 +844,7 @@ def run_evaluation(
                 "inference_seconds": elapsed,
                 "rtf": rtf,
                 "peak_process_memory_mb": peak_memory,
+                **runtime_metadata("model_default"),
                 "metrics": metric(
                     example.reference,
                     hypothesis,

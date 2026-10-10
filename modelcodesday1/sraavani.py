@@ -19,7 +19,9 @@ from evaluate_asr import (
     find_examples,
     make_telephony_audio,
     metric,
+    NORMALIZATION_POLICY,
     resample,
+    runtime_metadata,
     script_aware_metrics,
 )
 
@@ -789,11 +791,10 @@ def run_evaluation(
         "overlap_seconds": overlap_seconds,
         "batch_size": batch_size,
         "device": str(DEVICE),
-        "normalization": (
-            "casefold; remove ZWNJ/ZWJ; remove punctuation; "
-            "collapse whitespace; remove number separators; "
-            "preserve Devanagari vowel signs and scripts"
-        ),
+        "threads": torch.get_num_threads(),
+        "cpu_count": os.cpu_count(),
+        "beam_size": "model_default",
+        "normalization": NORMALIZATION_POLICY,
         "slices": {},
     }
 
@@ -878,11 +879,11 @@ def run_evaluation(
         #
         # We process groups of original utterances here. A long utterance
         # can produce multiple chunk jobs internally.
-        for i in range(
+        for batch_index, i in enumerate(range(
             0,
             len(slice_audios),
             batch_size,
-        ):
+        )):
             batch_audios = slice_audios[
                 i:i + batch_size
             ]
@@ -904,9 +905,8 @@ def run_evaluation(
                 sample_rate=MODEL_SAMPLE_RATE,
             )
 
-            per_sample_elapsed = (
-                elapsed / len(batch_audios)
-            )
+            batch_id = f"{slice_name}-{batch_index:05d}"
+            batch_duration = sum(len(audio) / MODEL_SAMPLE_RATE for audio in batch_audios)
 
             for (
                 example,
@@ -931,10 +931,18 @@ def run_evaluation(
                     ),
                     "hypothesis": hypothesis,
                     "duration_seconds": duration,
-                    "rtf": (
-                        per_sample_elapsed
-                        / max(duration, 1e-9)
-                    ),
+                    # Batch wall time is not an utterance latency. The same
+                    # measured time is keyed by batch_id and pooled once.
+                    "rtf": None,
+                    "inference_seconds": None,
+                    "batch_id": batch_id,
+                    "batch_elapsed_seconds": elapsed,
+                    "batch_duration_seconds": batch_duration,
+                    "batch_size": len(batch_audios),
+                    "device": str(DEVICE),
+                    "threads": torch.get_num_threads(),
+                    "cpu_count": os.cpu_count(),
+                    "beam_size": "model_default",
                     "peak_process_memory_mb": (
                         peak_memory
                     ),
