@@ -1,5 +1,17 @@
 # Local Python environment
 .venv/
+cudaenv/
+
+.env*
+
+
+.env
+
+
+#datasets 
+GV_Eval_3h/
+mucs/
+
 
 # Python bytecode and caches
 __pycache__/
@@ -13,3 +25,6 @@ transcriptions.jsonl
 evaluations.txt
 extrasamples.
 intandlangresults.json
+
+README.pdf
+
