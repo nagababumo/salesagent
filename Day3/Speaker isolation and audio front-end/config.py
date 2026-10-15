@@ -1,6 +1,6 @@
 from pathlib import Path
 
-MODEL_ID = "openai/whisper-large-v3-turbo"
+MODEL_ID = "facebook/mms-1b-all"
 MODEL_SR = 16000
 
 # Stage names used by main.py

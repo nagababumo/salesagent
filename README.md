@@ -959,20 +959,20 @@ Grounded in the Round 2 benchmark results and this 255-error audit:
 
    #part 4 
 
-   # Modular Speaker Isolation + Whisper ASR
+  # Modular Speaker Isolation + MMS ASR
 
-A modular audio front-end and ASR evaluation pipeline for conversational Indian-language speech using **`openai/whisper-large-v3-turbo`**.
+A modular audio front-end and ASR evaluation pipeline for conversational Hindi speech comparing **MMS (`hin` adapter), SraVaani 1.0, and IndicConformer 600M**. Whisper is not used for the current Day 3 measurements.
 
 The project evaluates the effect of:
 
 - Stereo channel selection
 - Silero VAD
 - Pyannote speaker diarization
-- Whisper ASR
+- Hindi-adapted MMS ASR
 - WER / CER
 - RTF / latency
 
-> **DeepFilterNet was initially explored but removed from the final pipeline because its `df` dependency was not reliably supported in the Colab environment. It is not part of the current implementation or results.**
+> **DeepFilterNet was measured on the synthetic stereo pair. It did not improve WER and worsened CER relative to selecting the right channel alone.**
 
 ---
 
@@ -989,7 +989,7 @@ Input Audio
      +--> DeepFilterNet
               |
               v
-           Whisper
+           Hindi-adapted MMS
               |
           WER / CER / RTF
 ```
@@ -1011,28 +1011,29 @@ Input Audio
                          Optional VAD
                               |
                               v
-                  Whisper-large-v3-turbo
+                  Selected Hindi ASR model
                               |
                          WER / CER / RTF
 ```
 
-Whisper is kept fixed while the front-end stage changes, allowing preprocessing techniques to be compared consistently.
+Each comparison keeps its ASR model fixed while the front-end stage changes, allowing preprocessing techniques to be compared consistently.
 
 ---
 
 ## 2. Project Structure
 
 ```text
-speaker_whisper/
+speaker_isolation/
 ├── main.py
 ├── config.py
 ├── audio_utils.py
 ├── channel_separator.py
 ├── vad_processor.py
 ├── diarization_processor.py
-├── whisper_asr.py
+├── mms_asr.py
 ├── metrics.py
-└── experiment_runner.py
+├── experiment_runner.py
+└── manifest_frontend_eval.py
 ```
 
 | File | Purpose |
@@ -1042,9 +1043,10 @@ speaker_whisper/
 | `channel_separator.py` | Left/right/average channel selection |
 | `vad_processor.py` | Silero VAD |
 | `diarization_processor.py` | Pyannote speaker isolation |
-| `whisper_asr.py` | Whisper ASR |
+| `mms_asr.py` | MMS Hindi-adapter ASR |
 | `metrics.py` | WER/CER |
 | `experiment_runner.py` | Connect and evaluate stages |
+| `manifest_frontend_eval.py` | Frozen-manifest VAD and stereo experiments |
 
 ---
 
@@ -1052,12 +1054,13 @@ speaker_whisper/
 
 | Stage | Workflow | Purpose |
 |---|---|---|
-| `raw` | Audio → Whisper | Baseline |
-| `right_channel` | Right channel → Whisper | Known stereo customer channel |
-| `vad` | Audio → VAD → Whisper | Remove non-speech |
-| `right_channel_vad` | Right channel → VAD → Whisper | Channel isolation + VAD |
-| `diarization` | Audio → Speaker isolation → Whisper | Mono multi-speaker audio |
-| `diarization_vad` | Speaker isolation → VAD → Whisper | Speaker isolation + VAD |
+| `raw` | Audio → MMS | Baseline |
+| `right_channel` | Right channel → MMS | Known stereo customer channel |
+| `vad` | Audio → VAD → MMS | Remove non-speech |
+| `right_channel_vad` | Right channel → VAD → MMS | Channel isolation + VAD |
+| `right_channel_denoise` | Right channel → DeepFilterNet → MMS | Measure enhancement against channel-only input |
+| `diarization` | Audio → Speaker isolation → MMS | Mono multi-speaker audio |
+| `diarization_vad` | Speaker isolation → VAD → MMS | Speaker isolation + VAD |
 
 `right_channel` stages require stereo audio. Channel position must be known from the recording setup; left/right alone does not identify the customer or agent.
 
@@ -1069,7 +1072,7 @@ speaker_whisper/
 |---|---|
 | `--file` | Input audio |
 | `--stage` | Stage to run or `all` |
-| `--language` | Whisper language (`hi`, `te`, `en`, etc.); `auto` disables forced language |
+| `--language` | Hindi language code (`hi`) |
 | `--reference` | Reference text for WER/CER |
 | `--vad-threshold` | VAD speech-confidence threshold |
 | `--vad-min-speech-ms` | Minimum speech duration retained |
@@ -1077,8 +1080,11 @@ speaker_whisper/
 | `--vad-padding-ms` | Padding around detected speech |
 | `--target-speaker` | Speaker selected after diarization |
 | `--hf-token` | Hugging Face token for pyannote |
-| `--save-audio` | Save processed audio sent to Whisper |
+| `--save-audio` | Save processed audio sent to MMS |
 | `--output-dir` | Results directory |
+
+The task CLI and manifest evaluator load `HF_TOKEN` from the repository-root
+`.env` when present; the token value is never written to result files.
 
 For short responses such as **`हाँ`**, **`जी`**, and **`नहीं`**, `--vad-min-speech-ms` and `--vad-padding-ms` are especially important.
 
@@ -1111,13 +1117,11 @@ python main.py \
 ### Diarization + VAD
 
 ```bash
-export HF_TOKEN="hf_..."
-
 python main.py \
     --file call.wav \
     --language hi \
     --stage diarization_vad \
-    --target-speaker SPEAKER_01 \
+    --target-speaker longest \
     --vad-threshold 0.40 \
     --vad-min-speech-ms 100 \
     --vad-min-silence-ms 200 \
@@ -1164,7 +1168,9 @@ Combined reference:
 
 ---
 
-# 7. Mono Audio Evaluation
+# 7. Historical Mono Audio Evaluation (Whisper)
+
+These two measurements are retained from the earlier Whisper run. They are not comparable to the current MMS results below.
 
 ## Mono Audio 1
 
@@ -1224,7 +1230,9 @@ VAD detected **1 speech segment**.
 
 ---
 
-# 8. Long-Form Audio Evaluation
+# 8. Historical Long-Form Audio Evaluation (Whisper)
+
+These 413-second VAD measurements also come from the earlier Whisper run and are retained for audit only; the short-turn MMS sweep below is the current VAD result.
 
 A **413-second Hindi recording** was evaluated with multiple VAD settings.
 
@@ -1322,57 +1330,113 @@ threshold / min-speech / min-silence / padding
 
 ---
 
-# 9. Combined Kathbath Overlap Evaluation
+# 9. Overlap Experiment: Corrected Conclusion
 
-Three Hindi Kathbath recordings were combined and overlapped.
+The earlier Whisper experiment placed three complete Kathbath utterances on top of
+each other in a single mono file. Pyannote returned only one speaker,
+`SPEAKER_00`, for 8.454 s; this was not a successful three-speaker separation.
+The selected speaker therefore contained essentially the same mixed signal as
+the input. All stages emitted the same hypothesis, including dropping the
+middle sentence ("उन्होंने कहा कि अतिथि अध्यापको को हटाना न्यायसंगत नहीं है"),
+and WER stayed 0.4444. The identical WER and transcript are evidence that no
+speaker was isolated; the shorter processed duration and lower RTF for
+diarization+VAD only show reduced ASR compute on that run. The prior
+recommendation of diarization+VAD as a candidate is withdrawn.
 
-```text
-Duration: 9.60 s
-Channels: 1
-Language: Hindi
+The experiment did not establish that pyannote can isolate this overlap. Its
+construction aligned whole independent recordings, which is not a controlled
+speaker-turn mixture and provides no ground-truth speaker activity timeline.
+A valid follow-up needs real overlapping turns with timed speaker labels,
+multiple diarization speakers, and separate speaker references. Report the
+speaker count and durations on every run. Speaker IDs are run-local; choose a
+speaker from channel mapping or a documented duration/turn policy, never a
+hard-coded `SPEAKER_01`.
 
-VAD:
-threshold = 0.40
-minimum speech = 100 ms
-minimum silence = 200 ms
-padding = 150 ms
-```
+# 10. Frozen-Manifest Front-End Evaluation
 
-| Stage | WER | CER | RTF | Processed Duration |
-|---|---:|---:|---:|---:|
-| Raw | 0.4444 | 0.3757 | 0.2064 | 9.600 s |
-| VAD | 0.4444 | 0.3757 | 0.1968 | 8.780 s |
-| Diarization | 0.4444 | 0.3757 | 0.2048 | 8.454 s |
-| Diarization + VAD | 0.4444 | 0.3757 | 0.1672 | 8.454 s |
+The follow-up uses the 50-row `short_turn` slice with MMS (`hin`), SraVaani,
+and IndicConformer. The default evaluator model is MMS; SraVaani and
+IndicConformer runs are selected with `--model`. Stereo results use two
+independent 8 kHz mono records from that slice, aligned at time zero and
+zero-padded to equal length. The right-channel reference is used
+for every score. This is a controlled channel-selection demonstration, not a
+natural two-party call.
 
-### Observation
+| Model | Technique | WER | CER | Total latency | Processed duration |
+|---|---|---:|---:|---:|---:|
+| MMS | Raw channel average | 1.0000 | 0.8485 | 0.123 s | 4.616 s |
+| MMS | Right channel | 1.0000 | 0.5758 | 0.122 s | 4.616 s |
+| MMS | Right channel + VAD (`0.40/100/200/150`) | 1.0000 | 0.5758 | 0.474 s | 4.382 s |
+| MMS | Right channel + DeepFilterNet | 1.0000 | 0.6667 | 0.576 s | 4.616 s |
+| SraVaani | Raw channel average | 1.0000 | 0.8485 | 0.101 s | 4.616 s |
+| SraVaani | Right channel | 0.2222 | 0.2121 | 0.072 s | 4.616 s |
+| SraVaani | Right channel + VAD (`0.40/100/200/150`) | 0.3333 | 0.2727 | 0.564 s | 4.382 s |
+| SraVaani | Right channel + DeepFilterNet | 1.0000 | 0.8182 | 0.509 s | 4.616 s |
 
-For this overlap experiment:
+On this one synthetic pair, right-channel selection helped SraVaani substantially
+and improved MMS CER but not WER. VAD degraded SraVaani WER and added latency;
+DeepFilterNet degraded both models' right-channel recognition. These pair
+timings are illustrative, not a natural-call estimate. The `.env` token is
+authorized for community-1, but pyannote.audio 3.4 cannot load its 4.x `plda`
+configuration. No new diarization score is claimed. IndicConformer produced no
+stereo score: its custom TorchScript preprocessing failed in the stereo run,
+although its complete short-turn sweep succeeded.
 
-- WER remained **0.4444** across all stages.
-- CER remained **0.3757**.
-- VAD reduced processed audio from **9.60 s to 8.78 s**.
-- Diarization reduced processed audio to **8.454 s**.
-- Diarization + VAD achieved the lowest RTF.
+## Short-Turn VAD Sweep
 
-Thus, the front-end reduced processing cost but did not change recognition accuracy for this particular overlap example.
+Settings are `threshold / min-speech-ms / min-silence-ms / padding-ms`. Metrics
+are pooled over all 50 manifest references. Latency includes VAD preprocessing
+and ASR; processed duration is the sum sent to ASR. No setting completely
+dropped any short turn. IndicConformer uses the ONNX Runtime CPU provider (the
+CUDA execution provider is not installed); its timing is not a GPU comparison.
+
+| Model | Technique | WER | CER | Total latency | Processed duration | Turns dropped |
+|---|---|---:|---:|---:|---:|---:|
+| MMS | Raw | 0.6708 | 0.3149 | 13.90 s | 180.91 s | 0/50 |
+| MMS | VAD `0.40/80/120/100` | 0.6739 | 0.3294 | 23.72 s | 140.68 s | 0/50 |
+| MMS | VAD `0.40/100/200/150` | 0.6708 | 0.3163 | 22.91 s | 144.15 s | 0/50 |
+| MMS | VAD `0.30/100/300/200` | 0.6832 | 0.3214 | 23.67 s | 150.17 s | 0/50 |
+| MMS | VAD `0.50/250/100/30` | 0.6739 | 0.3251 | 21.94 s | 129.87 s | 0/50 |
+| SraVaani | Raw | 0.4348 | 0.2413 | 9.88 s | 180.91 s | 0/50 |
+| SraVaani | VAD `0.40/80/120/100` | 0.4410 | 0.2383 | 11.80 s | 140.68 s | 0/50 |
+| SraVaani | VAD `0.40/100/200/150` | 0.4534 | 0.2471 | 11.23 s | 144.15 s | 0/50 |
+| SraVaani | VAD `0.30/100/300/200` | 0.4410 | 0.2310 | 11.09 s | 150.17 s | 0/50 |
+| SraVaani | VAD `0.50/250/100/30` | 0.4161 | 0.2259 | 13.57 s | 129.87 s | 0/50 |
+| IndicConformer | Raw | 0.3416 | 0.1545 | 17.25 s | 180.91 s | 0/50 |
+| IndicConformer | VAD `0.40/80/120/100` | 0.3509 | 0.1698 | 26.60 s | 140.68 s | 0/50 |
+| IndicConformer | VAD `0.40/100/200/150` | 0.3323 | 0.1655 | 25.57 s | 144.15 s | 0/50 |
+| IndicConformer | VAD `0.30/100/300/200` | 0.3540 | 0.1640 | 25.43 s | 150.17 s | 0/50 |
+| IndicConformer | VAD `0.50/250/100/30` | 0.3540 | 0.1727 | 24.21 s | 129.87 s | 0/50 |
+
+All three models dropped 0/50 turns. VAD reduced processed duration by
+17.0-28.2%. On MMS, this was compute reduction only: WER did not improve and
+latency rose for every setting. SraVaani's `0.50/250/100/30` setting lowered
+WER from 0.4348 to 0.4161, while latency rose from 9.88 s to 13.57 s.
+IndicConformer's `0.40/100/200/150` setting lowered WER from 0.3416 to 0.3323,
+while latency rose from 17.25 s to 25.57 s. Thus, VAD's accuracy effect depends
+on the ASR model, and none of the tested settings reduced total latency.
+
+MMS and SraVaani ran with CUDA PyTorch; IndicConformer's custom model used the
+ONNX Runtime CPU provider because the CUDA execution provider is unavailable.
+Cross-model latency is therefore not an apples-to-apples speed comparison.
+References remain pending human audit.
 
 ---
 
-# 10. Overall Technique Comparison
+# 11. Overall Technique Comparison
 
 | Technique | WER Effect | Latency / RTF | Production Role |
 |---|---|---|---|
-| Raw Whisper | Baseline | Baseline | Always useful as reference/fallback |
-| Channel separation | Not measured on the supplied mono tests | Very low cost | Use when stereo channel mapping is known |
-| Silero VAD | Mixed; unchanged on some tests, worse on long-form tests | Can reduce processed audio; effect depends on settings | Use only after tuning on representative calls |
-| Diarization | No WER/CER change in combined test | Slight RTF improvement in combined test | Useful for genuine mono multi-speaker calls |
-| Diarization + VAD | No WER/CER change in combined test | Lowest RTF in combined test | Good candidate for multi-speaker audio after validation |
-| DeepFilterNet | Not evaluated in final pipeline | Not evaluated | Removed from current implementation |
+| Raw ASR | Short-turn WER: MMS 0.6708; SraVaani 0.4348; IndicConformer 0.3416 | 13.90 s / 9.88 s / 17.25 s per 50 rows | IndicConformer timing is ONNX CPU; model latency is not directly comparable |
+| Channel separation | Synthetic-pair right-channel WER: MMS 1.0000; SraVaani 0.2222 | 0.122 s / 0.072 s respectively | Prefer when channel mapping is known; validate on natural calls |
+| Silero VAD | Best short-turn WER: MMS 0.6708; SraVaani 0.4161; IndicConformer 0.3323; 0/50 drops each | Reduced processed duration; total latency increased for every model | Tune per ASR model; no latency win shown |
+| Diarization | Historical overlap did not isolate a speaker; current model/runtime mismatch blocked a rerun | No valid current stage timing | Re-test with pyannote.audio 4.x and real overlap labels |
+| Diarization + VAD | Historical overlap WER unchanged because no isolation occurred | Historical RTF was lower | No recommendation until valid multi-speaker evaluation |
+| DeepFilterNet | WER unchanged or worsened; CER worsened vs. channel-only for MMS and SraVaani | 0.576 s / 0.509 s on the pair | Do not enable by default; measure on target audio |
 
 ---
 
-# 11. Production Pipeline
+# 12. Production Pipeline
 
 ### Fixed stereo channel mapping
 
@@ -1382,22 +1446,22 @@ Stereo Audio
 Select customer channel
      ↓
 Optional VAD
-     ↓
-Whisper
+    ↓
+  MMS (`hin` adapter)
 ```
 
 ### Mono multi-speaker call
 
 ```text
 Mono Audio
-     ↓
-Diarization
+  ↓
+Diarization (after runtime and data validation)
      ↓
 Target Speaker
      ↓
 Optional VAD
-     ↓
-Whisper
+  ↓
+MMS (`hin` adapter)
 ```
 
 ### Clean single-speaker audio
@@ -1405,33 +1469,33 @@ Whisper
 ```text
 Audio
   ↓
-Whisper
+MMS (`hin` adapter)
 ```
 
 The production pipeline should therefore enable preprocessing **based on the input type** rather than always running every stage.
 
 ---
 
-# 12. Key Findings
+# 13. Key Findings
 
-1. **Channel separation** is computationally cheap and is useful when the telephony system provides a fixed customer/agent channel mapping.
+1. **Channel separation** is computationally cheap and should be preferred when the telephony system provides a fixed customer/agent channel mapping. The synthetic stereo test lowered CER but not WER for MMS.
 
 2. **VAD reduces the amount of audio processed**, but the experiments show that this does not automatically reduce WER. VAD parameters need to be tuned on representative data.
 
 3. **Short utterances require special attention.** Responses such as `हाँ`, `जी`, and `नहीं` should be included when selecting VAD parameters.
 
-4. **Diarization is useful when speaker isolation is required**, particularly for mono recordings containing multiple speakers.
+4. **Diarization remains unvalidated in this rerun.** The earlier overlap produced one speaker covering 8.454 s, and the community-1 config requires a newer pyannote runtime. Speaker IDs are run-local; select by channel mapping or a documented policy such as longest accumulated duration, never a hard-coded label.
 
-5. In the **combined Kathbath overlap experiment**, diarization + VAD achieved the lowest RTF while WER/CER remained unchanged.
+5. The **combined Kathbath overlap experiment did not isolate speakers**: pyannote returned one speaker spanning 8.454 s, and the transcript was unchanged across stages. Its lower RTF reflected less audio processed, not successful isolation.
 
 ---
 
-# 13. Output
+# 14. Output
 
 With `--save-audio`:
 
 ```text
-speaker_whisper_results/
+speaker_isolation_results/
 ├── experiment_results.json
 └── processed_audio/
     ├── call__raw.wav
@@ -1440,7 +1504,7 @@ speaker_whisper_results/
     └── call__diarization_vad.wav
 ```
 
-The saved files allow direct inspection of the exact audio passed to Whisper for each stage.
+The saved files allow direct inspection of the exact audio passed to MMS for each stage.
 
 
 # (DAY4) Part 5 — Low-Resource CPU ASR Benchmark

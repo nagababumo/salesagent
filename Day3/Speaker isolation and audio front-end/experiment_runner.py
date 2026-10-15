@@ -22,9 +22,9 @@ class ExperimentResult:
     original_duration_seconds: float
     processed_duration_seconds: float
     preprocessing_time_seconds: float
-    whisper_time_seconds: float
+    asr_time_seconds: float
     total_time_seconds: float
-    rtf_whisper: float
+    rtf_asr: float
     rtf_total: float
     wer: float | None
     cer: float | None
@@ -57,7 +57,7 @@ STAGE_CONFIG = {
 class ExperimentRunner:
     def __init__(
         self,
-        whisper,
+        asr,
         channel_separator=None,
         vad=None,
         diarizer=None,
@@ -66,7 +66,7 @@ class ExperimentRunner:
         output_dir=Path("speaker_isolation_results"),
         save_audio=False,
     ):
-        self.whisper = whisper
+        self.asr = asr
         self.channel_separator = channel_separator
         self.vad = vad
         self.diarizer = diarizer
@@ -131,7 +131,7 @@ class ExperimentRunner:
             work, processed_sr = self.denoiser.process(work, sample_rate)
             sample_rate = processed_sr
 
-            # Whisper will receive 16k input; resampling is deliberately kept
+            # The ASR backend receives 16k input; resampling is deliberately kept
             # outside denoiser.py so that that module only owns enhancement.
             if sample_rate != MODEL_SR:
                 work, sample_rate = ensure_16k(work, sample_rate, MODEL_SR)
@@ -146,11 +146,11 @@ class ExperimentRunner:
                 sample_rate,
             )
 
-        hypothesis, whisper_time, gpu_memory = self.whisper.transcribe(
+        hypothesis, asr_time, gpu_memory = self.asr.transcribe(
             work, sample_rate
         )
 
-        total_time = prep_time + whisper_time
+        total_time = prep_time + asr_time
         wer_value, cer_value = calculate_metrics(reference, hypothesis)
         script_metrics = calculate_script_metrics(reference, hypothesis)
         vad_config = None
@@ -175,9 +175,9 @@ class ExperimentRunner:
             original_duration_seconds=original_duration,
             processed_duration_seconds=processed_duration,
             preprocessing_time_seconds=prep_time,
-            whisper_time_seconds=whisper_time,
+            asr_time_seconds=asr_time,
             total_time_seconds=total_time,
-            rtf_whisper=whisper_time / max(processed_duration, 1e-9),
+            rtf_asr=asr_time / max(processed_duration, 1e-9),
             rtf_total=total_time / max(original_duration, 1e-9),
             wer=wer_value,
             cer=cer_value,
@@ -187,7 +187,7 @@ class ExperimentRunner:
             speaker_durations=speaker_durations,
             gpu_memory_mb=gpu_memory,
             script_metrics=script_metrics,
-            device=getattr(self.whisper, "device", "unknown"),
+            device=getattr(self.asr, "device", "unknown"),
             threads=threads,
             beam_size="model_default",
             vad_config=vad_config,

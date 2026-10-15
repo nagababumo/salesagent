@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import os
 from pathlib import Path
+from dotenv import load_dotenv
 
 from audio_utils import ensure_16k, load_audio
 from channel_separator import ChannelSeparator
@@ -20,16 +21,16 @@ from denoiser import DeepFilterDenoiser
 from diarization_processor import SpeakerDiarizer
 from experiment_runner import ExperimentRunner
 from vad_processor import SileroVAD
-from whisper_asr import WhisperASR
+from mms_asr import MMSASR
 
 
 def parse_args():
     p = argparse.ArgumentParser(
-        description="Modular speaker isolation/front-end benchmark with Whisper-large-v3-turbo."
+        description="Modular speaker isolation/front-end benchmark with Hindi-adapted MMS ASR."
     )
     p.add_argument("--file", type=Path, required=True)
     p.add_argument("--model-id", default=MODEL_ID)
-    p.add_argument("--language", default="hi", help="Whisper language, e.g. hi, te, en, or auto")
+    p.add_argument("--language", default="hi", help="Hindi language code (hi)")
     p.add_argument("--reference", default=None)
     p.add_argument("--stage", choices=STAGES + ["all"], default="raw")
 
@@ -51,6 +52,7 @@ def parse_args():
 
 
 def main():
+    load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=False)
     args = parse_args()
 
     if not args.file.is_file():
@@ -72,7 +74,7 @@ def main():
     need_diar = any("diarization" in stage for stage in stages)
     need_denoise = any("denoise" in stage for stage in stages)
 
-    whisper = WhisperASR(args.model_id, args.language)
+    asr = MMSASR(args.model_id, args.language)
     channel_separator = ChannelSeparator()
 
     vad = None
@@ -101,7 +103,7 @@ def main():
         denoiser = DeepFilterDenoiser()
 
     runner = ExperimentRunner(
-        whisper=whisper,
+        asr=asr,
         channel_separator=channel_separator,
         vad=vad,
         diarizer=diarizer,

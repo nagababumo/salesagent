@@ -19,10 +19,11 @@ class SileroVAD:
         self.min_speech_duration_ms = min_speech_duration_ms
         self.min_silence_duration_ms = min_silence_duration_ms
         self.speech_pad_ms = speech_pad_ms
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
 
         self.model = load_silero_vad()
-        if torch.cuda.is_available() and hasattr(self.model, "to"):
-            self.model = self.model.to("cuda")
+        if self.device == "cuda" and hasattr(self.model, "to"):
+            self.model = self.model.to(self.device)
 
     def process(self, audio: np.ndarray, sample_rate: int = 16000):
         if sample_rate not in (8000, 16000):
@@ -31,7 +32,7 @@ class SileroVAD:
         if audio.size == 0:
             return audio.astype(np.float32), []
 
-        waveform = torch.from_numpy(audio.astype(np.float32))
+        waveform = torch.from_numpy(audio.astype(np.float32)).to(self.device)
 
         timestamps = get_speech_timestamps(
             waveform,

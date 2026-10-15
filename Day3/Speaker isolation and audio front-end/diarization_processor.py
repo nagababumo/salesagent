@@ -17,7 +17,7 @@ class SpeakerDiarizer:
         hf_token: str,
         model_id: str = "pyannote/speaker-diarization-community-1",
     ):
-        self.pipeline = Pipeline.from_pretrained(model_id, token=hf_token)
+        self.pipeline = Pipeline.from_pretrained(model_id, use_auth_token=hf_token)
 
         try:
             import torch
